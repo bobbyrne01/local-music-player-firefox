@@ -1,0 +1,16 @@
+{
+  "name": "local-music-player-firefox",
+  "title": "Local Music Player",
+  "id": "jid1-nCt6CO1kXSzfAg",
+  "description": "Browse and listen to your local music",
+  "author": "Robert Byrne",
+  "license": "GNU GPL v3",
+  "version": "0.1.0",
+  "permissions": {"private-browsing": true},
+  "preferences": [{
+  	"name": "directory",
+  	"title": "Directory?",
+    "type": "directory",
+    "value": ""
+  }]
+}
