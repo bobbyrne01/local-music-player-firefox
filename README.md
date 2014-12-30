@@ -1,6 +1,8 @@
 local-music-player-firefox
 ==========================
 
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 Firefox addon allowing user to listen to music stored on their local system.
 
 ### Features
