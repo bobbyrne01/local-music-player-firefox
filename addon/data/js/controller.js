@@ -1,12 +1,30 @@
+// handle clicks on directory input element
 window.addEventListener('click', function (event) {
     if (event.target.id.indexOf('directory') === 0) {
         LocalMusicPlayer.selectDir();
     }
 }, false);
 
+
+// automatically play next song in queue, if it exists
+document.getElementById('player').addEventListener('ended', function (event) {
+    console.log(LocalMusicPlayer.currentSongRow);
+    
+    if (document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow + 1]){
+
+    	LocalMusicPlayer.currentSongRow++;
+    	LocalMusicPlayer.play(
+    			document.getElementById("directory").value,
+    			document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML);
+    }
+}, false);
+
+
+
 var LocalMusicPlayer = {
 
     separator: null,
+    currentSongRow: null,
     selectDir: function () {
         self.port.emit("selectDir", '');
     },
@@ -27,6 +45,7 @@ var LocalMusicPlayer = {
 };
 
 
+// populate panel when shown
 self.port.on("uiData", function (uiData) {
 
     // remove children
@@ -50,9 +69,12 @@ self.port.on("uiData", function (uiData) {
         img.className = 'imageSpacing';
 
         var filename = parsed.files[i];
+        row = i;
         img.addEventListener('click', function (event) {
 
+        	LocalMusicPlayer.currentSongRow = row;
             LocalMusicPlayer.play(parsed.dir, filename);
+            
         }, false);
 
         cell2.appendChild(img);
