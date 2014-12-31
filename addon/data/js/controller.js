@@ -26,18 +26,6 @@ var LocalMusicPlayer = {
     }
 };
 
-exportFunction(LocalMusicPlayer.play, unsafeWindow, {
-    defineAs: "play"
-});
-exportFunction(LocalMusicPlayer.pause, unsafeWindow, {
-    defineAs: "pause"
-});
-exportFunction(LocalMusicPlayer.stop, unsafeWindow, {
-    defineAs: "stop"
-});
-
-
-
 
 self.port.on("uiData", function (uiData) {
 
