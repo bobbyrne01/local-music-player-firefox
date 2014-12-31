@@ -11,7 +11,7 @@ Firefox addon allowing user to listen to music stored on their local system.
 * Listen to local music
 * Notification when song starts
 * Saves last directory across sessions
-* Automatically plays next song in queue, if one exists
+* Option: automatically play next song in queue, if one exists
 
 ### Audio support
 

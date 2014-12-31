@@ -6,10 +6,18 @@ window.addEventListener('click', function (event) {
 }, false);
 
 
-// automatically play next song in queue, if it exists
-document.getElementById('player').addEventListener('ended', function (event) {
-    console.log(LocalMusicPlayer.currentSongRow);
-    
+// if option selected, automatically play next song in queue, if it exists
+document.getElementById('player').addEventListener('ended', setupNextTrackListener);
+document.getElementById('playNextTrack').addEventListener("change", function(event){
+	if (document.getElementById('playNextTrack').checked){
+		document.getElementById('player').addEventListener('ended', setupNextTrackListener);
+	}else{
+		document.getElementById('player').removeEventListener('ended', setupNextTrackListener);
+	}
+}, false);
+
+function setupNextTrackListener(){
+   
     if (document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow + 1]){
 
     	LocalMusicPlayer.currentSongRow++;
@@ -17,10 +25,10 @@ document.getElementById('player').addEventListener('ended', function (event) {
     			document.getElementById("directory").value,
     			document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML);
     }
-}, false);
+}
 
 
-
+// scoped functions
 var LocalMusicPlayer = {
 
     separator: null,
