@@ -19,5 +19,5 @@ exports.list = function(dir) {
 	  }
 	}
 	
-	return audio;
+	return audio.sort();
 };
