@@ -8,7 +8,8 @@ var Panel = require("sdk/panel"),
 	System = require("./System"),
 	Tabs = require("./Tabs"),
 	panel,
-	separator;
+	separator,
+	files;
 
 exports.init = function() {
 	
@@ -30,11 +31,11 @@ exports.init = function() {
 		onHide: function() {
 			Button.get().state('window', {checked: false});
 		}
-	});
+	});	
 	
 	panel.port.on("selectDir", function () {
 		Chrome.selectDir();
-		panel.show();
+		files = FileIO.list((Preference.get("directory") === "" ? Chrome.getHomeDir().path : Preference.get("directory")));
 	});
 	
 	panel.port.on("play", function (filename) {
@@ -51,13 +52,10 @@ exports.get = function() {
 };
 
 function populateUI() {
-	
-	var dir = (Preference.get("directory") === "" ? Chrome.getHomeDir().path : Preference.get("directory"));
-	
 	var uiData = JSON.stringify({
-		dir: dir,
+		dir: (Preference.get("directory") === "" ? Chrome.getHomeDir().path : Preference.get("directory")),
 		separator: separator,
-		files: FileIO.list(dir)});
+		files: files});
 	
 	panel.port.emit("uiData", uiData);
 }

@@ -134,35 +134,38 @@ self.port.on("uiData", function (uiData) {
 
     var parsed = JSON.parse(uiData);
     
-    function populateRow(){
-    	var table = document.getElementById("resultFiles");
-        var row = table.insertRow(table.rows.length);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-
-        var newText = document.createTextNode(parsed.files[i]);
-        cell1.appendChild(newText);
-
-        var img = document.createElement('img');
-        img.src = "../images/play-24.png";
-        img.className = 'imageSpacing';
-
-        var filename = parsed.files[i];
-        row = i;
-        img.addEventListener('click', function (event) {
-
-        	LocalMusicPlayer.currentSongRow = row;
-            LocalMusicPlayer.play(parsed.dir, filename);
-            
-        }, false);
-
-        cell2.appendChild(img);
+    if (parsed.files != undefined){
+    
+	    function populateRow(){
+	    	var table = document.getElementById("resultFiles");
+	        var row = table.insertRow(table.rows.length);
+	        var cell1 = row.insertCell(0);
+	        var cell2 = row.insertCell(1);
+	
+	        var newText = document.createTextNode(parsed.files[i]);
+	        cell1.appendChild(newText);
+	
+	        var img = document.createElement('img');
+	        img.src = "../images/play-24.png";
+	        img.className = 'imageSpacing';
+	
+	        var filename = parsed.files[i];
+	        row = i;
+	        img.addEventListener('click', function (event) {
+	
+	        	LocalMusicPlayer.currentSongRow = row;
+	            LocalMusicPlayer.play(parsed.dir, filename);
+	            
+	        }, false);
+	
+	        cell2.appendChild(img);
+	    }
+	
+	    for (var i = 0; i < parsed.files.length; i++) {
+	    	populateRow();
+	    }
     }
-
-    for (var i = 0; i < parsed.files.length; i++) {
-    	populateRow();
-    }
-
+    
     document.getElementById("directory").value = parsed.dir;
     LocalMusicPlayer.separator = parsed.separator;
 });
