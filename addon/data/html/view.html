@@ -4,24 +4,38 @@
 		<link rel="stylesheet" type="text/css" media="all" href="../css/style.css"/>
 	</head>
 	<body>
-		<table>
+		<table class="fullWidth">
 			<tr>
 				<td colspan="2">
-					<audio id="player" preload="auto" controls></audio>
+					<audio id="player" preload="auto" controls class="fullWidth"></audio>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<label>Automatically play next song in queue?</label>
-					<input id="playNextTrack" type="checkbox" checked></input>
+					<div class="left">
+						<img id="previousTrack" src="../images/previous-24.png" />
+						<img id="stopTrack" src="../images/stop-24.png" />
+						<img id="nextTrack" src="../images/next-24.png" />
+					</div>
+					<div class="right">
+						<img id="repeatAll" src="../images/repeatAll-24.png" />
+						<img id="random" src="../images/random-24.png" />
+					</div>
 				</td>
 			</tr>
+			<!-- <tr>
+				<td colspan="2">
+					<div class="right">
+						<img id="repeatAll" src="../images/twitter-24.png" />
+					</div>
+				</td>
+			</tr> -->
 			<tr>
 				<td>
 					<label>Directory: </label>
 				</td>
 				<td>
-					<input id="directory" readonly="true" size="30" />
+					<input id="directory" readonly="true" class="fullWidth" />
 				</td>
 			</tr>
 		</table>
