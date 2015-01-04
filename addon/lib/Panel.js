@@ -6,6 +6,7 @@ var Panel = require("sdk/panel"),
 	Chrome = require("./Chrome"),
 	FileIO = require("./FileIO"),
 	System = require("./System"),
+	Tabs = require("./Tabs"),
 	panel,
 	separator;
 
@@ -38,6 +39,10 @@ exports.init = function() {
 	
 	panel.port.on("play", function (filename) {
 		Notification.sendMsg('Playing: ' + filename);
+	});
+	
+	panel.port.on("tweetTrack", function (url) {
+		Tabs.open(url);
 	});
 };
 

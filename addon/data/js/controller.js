@@ -103,6 +103,13 @@ var LocalMusicPlayer = {
     	}else if (LocalMusicPlayer.playStyle === 'random'){
     		LocalMusicPlayer.random();
     	}
+    },
+    tweetTrack: function () {
+    	console.log('tweet clicked');
+    	
+    	var url = 'https://twitter.com/intent/tweet?hashtags=LocalMusicPlayer&text=' + 
+    	  encodeURIComponent('Listening to "' + document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML + '"');
+    	self.port.emit("tweetTrack", url);
     }
 };
 
@@ -114,6 +121,7 @@ document.getElementById('previousTrack').addEventListener('click', LocalMusicPla
 document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
 document.getElementById('repeatAll').addEventListener('click', function() { LocalMusicPlayer.toggle(this); });
 document.getElementById('random').addEventListener('click', function() { LocalMusicPlayer.toggle(this); });
+document.getElementById('tweetTrack').addEventListener('click', LocalMusicPlayer.tweetTrack);
 
 
 // populate panel with addon data when shown
