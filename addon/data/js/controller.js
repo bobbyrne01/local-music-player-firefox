@@ -22,7 +22,10 @@ var LocalMusicPlayer = {
         document.getElementById('player').pause();
     },
     stop: function () {
-        document.getElementById('player').src = '';
+    	
+    	if (LocalMusicPlayer.currentSongRow !== null){
+    		document.getElementById('player').src = '';
+    	}
     },
     previousTrack: function () {
     	

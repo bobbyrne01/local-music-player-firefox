@@ -13,6 +13,7 @@ Firefox addon allowing user to listen to music stored on their local system.
 * Play single track, by default
 * Repeat all tracks sequentially
 * Randomize track
+* Displays currently playing track
 * Volume adjustment controls
 * Mute/unmute button
 * Notification when song starts
