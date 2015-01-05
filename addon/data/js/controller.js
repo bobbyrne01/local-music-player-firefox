@@ -51,10 +51,13 @@ var LocalMusicPlayer = {
             
         	} else {
         		
-        		LocalMusicPlayer.currentSongRow = 0;
-            	LocalMusicPlayer.play(
-            			document.getElementById("directory").value,
-            			document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML);
+        		if (document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow] !== undefined){
+        			
+        			LocalMusicPlayer.currentSongRow = 0;
+                	LocalMusicPlayer.play(
+                			document.getElementById("directory").value,
+                			document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML);
+        		}
         	}
     	}
     },
