@@ -1,15 +1,24 @@
 .imageSpacing {
-	margin: 0px 5px;
+    margin: 0px 5px;
 }
-
+.currentTrackCellWidth {
+    width: 95%;
+}
+.tweetCellWidth {
+    width:5%
+}
+.directoryLabelCellWidth {
+    width: 20%;
+}
+.directoryInputCellWidth {
+    width: 80%;
+}
 .fullWidth {
-	width: 100%;
+    width: 100%;
 }
-
 .left {
-	float: left;
+    float: left;
 }
-
 .right {
-	float: right;
+    float: right;
 }

@@ -14,7 +14,7 @@ var LocalMusicPlayer = {
         document.getElementById('player').src = 'file://' + dir + LocalMusicPlayer.separator + filename;
         document.getElementById('player').play();
         
-        document.getElementById('currentTrack').innerHTML = filename;
+        document.getElementById('currentTrack').textContent = filename;
 
         self.port.emit("play", filename);
     },
