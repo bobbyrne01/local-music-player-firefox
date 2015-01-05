@@ -105,11 +105,32 @@ var LocalMusicPlayer = {
     	}
     },
     tweetTrack: function () {
-    	console.log('tweet clicked');
     	
     	var url = 'https://twitter.com/intent/tweet?hashtags=LocalMusicPlayer&text=' + 
     	  encodeURIComponent('Listening to "' + document.getElementById('resultFiles').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML + '"');
     	self.port.emit("tweetTrack", url);
+    },
+    populateRow: function (filename, iteration){
+    	var table = document.getElementById("resultFiles");
+        var row = table.insertRow(table.rows.length);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        var newText = document.createTextNode(filename);
+        cell1.appendChild(newText);
+
+        var img = document.createElement('img');
+        img.src = "../images/play-24.png";
+        img.className = 'imageSpacing';
+
+        img.addEventListener('click', function (event) {
+
+        	LocalMusicPlayer.currentSongRow = iteration;
+            LocalMusicPlayer.play(document.getElementById("directory").value, filename);
+            
+        }, false);
+
+        cell2.appendChild(img);
     }
 };
 
@@ -133,39 +154,13 @@ self.port.on("uiData", function (uiData) {
     }
 
     var parsed = JSON.parse(uiData);
-    
-    if (parsed.files != undefined){
-    
-	    function populateRow(){
-	    	var table = document.getElementById("resultFiles");
-	        var row = table.insertRow(table.rows.length);
-	        var cell1 = row.insertCell(0);
-	        var cell2 = row.insertCell(1);
-	
-	        var newText = document.createTextNode(parsed.files[i]);
-	        cell1.appendChild(newText);
-	
-	        var img = document.createElement('img');
-	        img.src = "../images/play-24.png";
-	        img.className = 'imageSpacing';
-	
-	        var filename = parsed.files[i];
-	        row = i;
-	        img.addEventListener('click', function (event) {
-	
-	        	LocalMusicPlayer.currentSongRow = row;
-	            LocalMusicPlayer.play(parsed.dir, filename);
-	            
-	        }, false);
-	
-	        cell2.appendChild(img);
-	    }
-	
-	    for (var i = 0; i < parsed.files.length; i++) {
-	    	populateRow();
-	    }
-    }
-    
     document.getElementById("directory").value = parsed.dir;
     LocalMusicPlayer.separator = parsed.separator;
+    
+    if (parsed.files !== undefined){
+	
+	    for (var i = 0; i < parsed.files.length; i++) {
+	    	LocalMusicPlayer.populateRow(parsed.files[i], i);
+	    }
+    }
 });
