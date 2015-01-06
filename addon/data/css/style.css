@@ -1,17 +1,14 @@
+html, body {
+	height: 97%;
+}
 .imageSpacing {
     margin: 0px 5px;
 }
-.currentTrackCellWidth {
+.libraryCellWidth {
     width: 95%;
 }
 .tweetCellWidth {
     width:5%
-}
-.directoryLabelCellWidth {
-    width: 20%;
-}
-.directoryInputCellWidth {
-    width: 80%;
 }
 .fullWidth {
     width: 100%;
@@ -21,4 +18,13 @@
 }
 .right {
     float: right;
+}
+#libraryView {
+	display: none;
+	height: 100%;
+}
+#libraries {
+	background-color: #E6E6E6;
+	overflow: auto;
+	max-height: 90%;
 }

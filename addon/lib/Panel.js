@@ -7,6 +7,7 @@ var Panel = require("sdk/panel"),
 	FileIO = require("./FileIO"),
 	System = require("./System"),
 	Tabs = require("./Tabs"),
+	SimpleStorage = require("./SimpleStorage"),
 	panel,
 	separator,
 	files;
@@ -18,6 +19,13 @@ exports.init = function() {
 	}else{
 	  separator = '/';
 	}
+	
+	if (typeof SimpleStorage.getDirectories() === 'undefined'){
+		SimpleStorage.setDirectories([]);
+	}
+	
+	// get list of songs when firefox starts
+	files = FileIO.list(SimpleStorage.getDirectories());
 	
 	panel = Panel.Panel({
 		width: 450,
@@ -35,7 +43,7 @@ exports.init = function() {
 	
 	panel.port.on("selectDir", function () {
 		Chrome.selectDir();
-		files = FileIO.list((Preference.get("directory") === "" ? Chrome.getHomeDir().path : Preference.get("directory")));
+		files = FileIO.list(SimpleStorage.getDirectories());
 	});
 	
 	panel.port.on("play", function (filename) {
@@ -53,7 +61,7 @@ exports.get = function() {
 
 function populateUI() {
 	var uiData = JSON.stringify({
-		dir: (Preference.get("directory") === "" ? Chrome.getHomeDir().path : Preference.get("directory")),
+		dirs: (SimpleStorage.getDirectories()),
 		separator: separator,
 		files: files});
 	
