@@ -21,6 +21,8 @@ var LocalMusicPlayer = {
 	},
 	stop: function () {
 		if (LocalMusicPlayer.currentSongRow !== null) {
+			document.getElementById('currentTrack').textContent = '';
+			LocalMusicPlayer.currentSongRow = null;
 			document.getElementById('player').src = '';
 		}
 	},
