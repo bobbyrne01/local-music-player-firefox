@@ -49,6 +49,7 @@ module.exports = function (grunt) {
 			options: {
 				file: 'package.json',
 				additionalFiles: ['addon/package.json'],
+				indentation: '\t',
 				bump: true,
 				add: true,
 				commit: true,
