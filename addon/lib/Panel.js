@@ -2,7 +2,6 @@ var Panel = require("sdk/panel"),
 	Data = require("./Data"),
 	Button = require("./ToggleButton"),
 	Notification = require("./Notification"),
-	Preference = require("./Preference"),
 	Chrome = require("./Chrome"),
 	FileIO = require("./FileIO"),
 	System = require("./System"),
@@ -44,6 +43,18 @@ exports.init = function() {
 	panel.port.on("selectDir", function () {
 		Chrome.selectDir();
 		files = FileIO.list(SimpleStorage.getDirectories());
+	});
+	
+	panel.port.on("dirsToRemove", function (dirsToRemove) {
+		
+		Array.prototype.diff = function(a) {
+		    return this.filter(function(i) {return a.indexOf(i) < 0;});
+		};
+		
+		SimpleStorage.setDirectories(SimpleStorage.getDirectories().diff(dirsToRemove));
+		files = FileIO.list(SimpleStorage.getDirectories());
+		
+		populateUI();
 	});
 	
 	panel.port.on("play", function (filename) {

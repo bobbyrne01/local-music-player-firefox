@@ -1,7 +1,6 @@
 var {
     Cc, Ci, Cu, components
 } = require("chrome"),
-    Preference = require("./Preference"),
     Notification = require("./Notification"),
     Panel = require("./Panel"),
     Window = require("./Window"),

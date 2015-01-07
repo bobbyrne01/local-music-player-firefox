@@ -8,27 +8,23 @@ var LocalMusicPlayer = {
     selectDir: function () {
         self.port.emit("selectDir", '');
     },
-
     play: function (dir, filename) {
-
         document.getElementById('player').src = 'file://' + dir + LocalMusicPlayer.separator + filename;
         document.getElementById('player').play();
         
         document.getElementById('currentTrack').textContent = filename;
 
-        self.port.emit("play", filename);
+        self.port.emit("play", filename); // for notification
     },
     pause: function () {
         document.getElementById('player').pause();
     },
     stop: function () {
-    	
     	if (LocalMusicPlayer.currentSongRow !== null){
     		document.getElementById('player').src = '';
     	}
     },
     previousTrack: function () {
-    	
     	if (document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow - 1]){
         	LocalMusicPlayer.currentSongRow--;
         	LocalMusicPlayer.play(
@@ -70,7 +66,6 @@ var LocalMusicPlayer = {
         	LocalMusicPlayer.play(
         			document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
         			document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
-        
     	}
     },
     toggle: function (obj) {
@@ -145,13 +140,33 @@ var LocalMusicPlayer = {
 
         cell2.appendChild(img);
     },
-    showLibraryView: function () {
-    	document.getElementById('playerView').style.display = 'none';
-    	document.getElementById('libraryView').style.display = 'inline';
+    toggleView: function(obj) {
+    	if (obj.id === 'libraryShow'){
+    		
+    		document.getElementById('playerView').style.display = 'none';
+        	document.getElementById('libraryView').style.display = 'inline';
+        	
+    	}else if (obj.id === 'libraryBack'){
+    		
+    		document.getElementById('libraryView').style.display = 'none';
+        	document.getElementById('playerView').style.display = 'inline';
+    	}
     },
-    showPlayerView: function () {
-    	document.getElementById('libraryView').style.display = 'none';
-    	document.getElementById('playerView').style.display = 'inline';
+    removeDirs: function () {
+    	
+    	var dirsToRemove = [];
+    	
+    	for (var j = 0; j < document.getElementById('directoriesTable').rows.length; j++){
+    		
+    		if (document.getElementById('directoriesTable').rows[j].cells[1].firstChild.checked){
+    			
+    			dirsToRemove.push(document.getElementById('directoriesTable').rows[j].cells[0].innerHTML);
+    		}
+    	}
+    	
+    	if (dirsToRemove.length > 0){
+    		self.port.emit("dirsToRemove", dirsToRemove);
+    	}
     }
 };
 
@@ -162,10 +177,11 @@ document.getElementById('previousTrack').addEventListener('click', LocalMusicPla
 document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
 document.getElementById('repeatAll').addEventListener('click', function() { LocalMusicPlayer.toggle(this); });
 document.getElementById('random').addEventListener('click', function() { LocalMusicPlayer.toggle(this); });
-document.getElementById('libraryShow').addEventListener('click', LocalMusicPlayer.showLibraryView);
+document.getElementById('libraryShow').addEventListener('click', function() { LocalMusicPlayer.toggleView(this); });
 document.getElementById('tweetTrack').addEventListener('click', LocalMusicPlayer.tweetTrack);
 document.getElementById('libraryAdd').addEventListener('click', LocalMusicPlayer.selectDir);
-document.getElementById('libraryBack').addEventListener('click', LocalMusicPlayer.showPlayerView);
+document.getElementById('libraryRemove').addEventListener('click', LocalMusicPlayer.removeDirs);
+document.getElementById('libraryBack').addEventListener('click', function() { LocalMusicPlayer.toggleView(this); });
 
 
 // populate panel with addon data when shown
@@ -188,13 +204,39 @@ self.port.on("uiData", function (uiData) {
     		element.removeChild(element.firstChild);
     	}
     	
+    	document.getElementById('libraryRemove').disabled = false;
+    	
     	// populate
+    	var table = document.createElement('table');
+    	table.id = 'directoriesTable';
+    	
         for (var i = 0; i < parsed.dirs.length; i++){
         	
+        	var row = table.insertRow(table.rows.length),
+    			cell0 = row.insertCell(0),
+    			cell1 = row.insertCell(1);
+        	
         	var dirText = document.createTextNode(parsed.dirs[i]);
-        	document.getElementById('libraries').appendChild(dirText);
-        	document.getElementById('libraries').appendChild(document.createElement("br"));
+            	cell0.appendChild(dirText);
+            	
+            var checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            
+            cell1.appendChild(checkbox);
         }
+        
+        document.getElementById('libraries').appendChild(table);
+        
+    }else if (parsed.dirs.length === 0){
+    	
+    	// remove children first
+    	var element = document.getElementById('libraries');
+    	while(element.firstChild){
+    		element.removeChild(element.firstChild);
+    	}
+    	
+    	document.getElementById('libraryRemove').disabled = true;
+    	document.getElementById('libraries').appendChild(document.createTextNode('No directories added.'));
     }
     
     // add music files to player view
