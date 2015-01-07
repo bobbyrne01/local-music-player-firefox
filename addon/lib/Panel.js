@@ -7,6 +7,7 @@ var Panel = require("sdk/panel"),
 	System = require("./System"),
 	Tabs = require("./Tabs"),
 	SimpleStorage = require("./SimpleStorage"),
+	Preference = require("./Preference"),
 	panel,
 	separator,
 	files;
@@ -68,6 +69,10 @@ exports.init = function () {
 	panel.port.on("tweetTrack", function (url) {
 		Tabs.open(url);
 	});
+
+	panel.port.on("notificationSetting", function (value) {
+		Preference.set('notification', value);
+	});
 };
 
 exports.get = function () {
@@ -78,7 +83,8 @@ function populateUI() {
 	var uiData = JSON.stringify({
 		dirs: (SimpleStorage.getDirectories()),
 		separator: separator,
-		files: files
+		files: files,
+		notification: (Preference.get("notification") === undefined ? true : Preference.get("notification"))
 	});
 
 	panel.port.emit("uiData", uiData);

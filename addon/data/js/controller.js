@@ -14,7 +14,9 @@ var LocalMusicPlayer = {
 
 		document.getElementById('currentTrack').textContent = filename;
 
-		self.port.emit("play", filename); // for notification
+		if (document.getElementById('notificationPref').checked) {
+			self.port.emit("play", filename); // for notification
+		}
 	},
 	pause: function () {
 		document.getElementById('player').pause();
@@ -155,6 +157,16 @@ var LocalMusicPlayer = {
 
 			document.getElementById('libraryView').style.display = 'none';
 			document.getElementById('playerView').style.display = 'inline';
+
+		} else if (obj.id === 'settingsShow') {
+
+			document.getElementById('playerView').style.display = 'none';
+			document.getElementById('settingsView').style.display = 'inline';
+
+		} else if (obj.id === 'settingsBack') {
+
+			document.getElementById('settingsView').style.display = 'none';
+			document.getElementById('playerView').style.display = 'inline';
 		}
 	},
 	removeDirs: function () {
@@ -195,6 +207,19 @@ document.getElementById('libraryRemove').addEventListener('click', LocalMusicPla
 document.getElementById('libraryBack').addEventListener('click', function () {
 	LocalMusicPlayer.toggleView(this);
 });
+document.getElementById('settingsShow').addEventListener('click', function () {
+	LocalMusicPlayer.toggleView(this);
+});
+document.getElementById('settingsBack').addEventListener('click', function () {
+	LocalMusicPlayer.toggleView(this);
+});
+document.getElementById('notificationPref').addEventListener("change", function (event) {
+	if (document.getElementById('notificationPref').checked) {
+		self.port.emit("notificationSetting", true);
+	} else {
+		self.port.emit("notificationSetting", false);
+	}
+}, false);
 
 
 // populate panel with addon data when shown
@@ -260,4 +285,6 @@ self.port.on("uiData", function (uiData) {
 			}
 		}
 	}
+
+	document.getElementById('notificationPref').checked = parsed.notification;
 });

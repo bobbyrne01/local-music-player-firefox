@@ -28,3 +28,7 @@ html, body {
 	overflow: auto;
 	max-height: 90%;
 }
+#settingsView {
+	display: none;
+	height: 100%;
+}

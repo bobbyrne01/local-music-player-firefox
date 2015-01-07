@@ -50,6 +50,7 @@ module.exports = function (grunt) {
 				file: 'package.json',
 				additionalFiles: ['addon/package.json'],
 				indentation: '\t',
+				changelog: true,
 				bump: true,
 				add: true,
 				commit: true,
