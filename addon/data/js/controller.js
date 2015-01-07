@@ -230,9 +230,9 @@ self.port.on("uiData", function (uiData) {
     }else if (parsed.dirs.length === 0){
     	
     	// remove children first
-    	var element = document.getElementById('libraries');
-    	while(element.firstChild){
-    		element.removeChild(element.firstChild);
+    	var librariesElement = document.getElementById('libraries');
+    	while(librariesElement.firstChild){
+    		librariesElement.removeChild(librariesElement.firstChild);
     	}
     	
     	document.getElementById('libraryRemove').disabled = true;
