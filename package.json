@@ -1,27 +1,27 @@
 {
-	"name": "local-music-player-firefox",
-	"version": "0.5.4",
-	"description": "Browse and listen to your local music",
-	"main": "addon/lib/main.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bobbyrne01/local-music-player-firefox.git"
-	},
-	"author": "Robert Byrne",
-	"license": "GNU GPL v3",
-	"bugs": {
-		"url": "https://github.com/bobbyrne01/local-music-player-firefox/issues"
-	},
-	"homepage": "https://github.com/bobbyrne01/local-music-player-firefox",
-	"devDependencies": {
-		"grunt": "^0.4.5",
-		"grunt-contrib-jshint": "^0.10.0",
-		"grunt-contrib-watch": "^0.6.1",
-		"grunt-jsbeautifier": "^0.2.7",
-		"grunt-notify": "^0.4.1",
-		"grunt-release": "^0.9.0"
-	}
+  "name": "local-music-player-firefox",
+  "version": "0.5.5",
+  "description": "Browse and listen to your local music",
+  "main": "addon/lib/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bobbyrne01/local-music-player-firefox.git"
+  },
+  "author": "Robert Byrne",
+  "license": "GNU GPL v3",
+  "bugs": {
+    "url": "https://github.com/bobbyrne01/local-music-player-firefox/issues"
+  },
+  "homepage": "https://github.com/bobbyrne01/local-music-player-firefox",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsbeautifier": "^0.2.7",
+    "grunt-notify": "^0.4.1",
+    "grunt-release": "^0.9.0"
+  }
 }
