@@ -109,9 +109,12 @@ var LocalMusicPlayer = {
 	},
 	tweetTrack: function () {
 
-		var url = 'https://twitter.com/intent/tweet?hashtags=LocalMusicPlayer&text=' +
-			encodeURIComponent('Listening to "' + document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML + '"');
-		self.port.emit("tweetTrack", url);
+		if (LocalMusicPlayer.currentSongRow !== null) {
+
+			var url = 'https://twitter.com/intent/tweet?hashtags=LocalMusicPlayer&text=' +
+				encodeURIComponent('Listening to "' + document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML + '"');
+			self.port.emit("tweetTrack", url);
+		}
 	},
 	populateRow: function (song, iteration) {
 		var table = document.getElementById("tracks"),
