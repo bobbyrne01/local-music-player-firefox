@@ -1,17 +1,17 @@
 var ss = require("sdk/simple-storage");
 
-function getDirectories(){
+function getDirectories() {
 	return ss.storage.directories;
 }
 
-exports.getDirectories = function(){
+exports.getDirectories = function () {
 	return getDirectories();
 };
 
-function setDirectories(directories){
+function setDirectories(directories) {
 	ss.storage.directories = directories;
 }
 
-exports.setDirectories = function(directories){
+exports.setDirectories = function (directories) {
 	setDirectories(directories);
 };

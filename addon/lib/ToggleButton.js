@@ -1,10 +1,12 @@
-var { ToggleButton } = require("sdk/ui/button/toggle"),
+var {
+	ToggleButton
+} = require("sdk/ui/button/toggle"),
 	Data = require("./Data"),
 	Panel = require("./Panel"),
 	button;
 
-exports.init = function() {
-	
+exports.init = function () {
+
 	button = ToggleButton({
 		id: "local-music-player-widget",
 		label: 'Local Music Player',
@@ -13,7 +15,7 @@ exports.init = function() {
 	});
 };
 
-exports.get = function() {
+exports.get = function () {
 	return button;
 };
 
