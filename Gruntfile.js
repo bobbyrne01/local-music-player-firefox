@@ -65,7 +65,7 @@ module.exports = function (grunt) {
 					passwordVar: 'GITHUB_PASSWORD'
 				}
 			}
-		},
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-notify');
