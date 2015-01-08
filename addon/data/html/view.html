@@ -1,26 +1,28 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" media="all" href="../css/style.css"/>
+		<title>Local Music Player</title>
 	</head>
 	<body>
 		<div id="playerView">
 			<table class="fullWidth">
 				<tr>
-					<td colspan="2">
+					<td>
 						<audio id="player" preload="auto" controls class="fullWidth"></audio>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td>
 						<div class="left">
-							<img id="previousTrack" src="../images/previous-24.png" />
-							<img id="stopTrack" src="../images/stop-24.png" />
-							<img id="nextTrack" src="../images/next-24.png" />
+							<img id="previousTrack" src="../images/previous-24.png" alt="Previous" />
+							<img id="stopTrack" src="../images/stop-24.png" alt="Stop" />
+							<img id="nextTrack" src="../images/next-24.png" alt="Next" />
 						</div>
 						<div class="right">
-							<img id="repeatAll" src="../images/repeatAll-24.png" />
-							<img id="random" src="../images/random-24.png" />
+							<img id="repeatAll" src="../images/repeatAll-24.png" alt="RepeatAll" />
+							<img id="random" src="../images/random-24.png" alt="Random" />
 						</div>
 					</td>
 				</tr>
@@ -28,19 +30,19 @@
 			<table class="fullWidth">
 				<tr>
 					<td class="libraryCellWidth">
-						<img id="libraryShow" src="../images/library-24.png" />
-						<img id="settingsShow" src="../images/settings-24.png" />
+						<img id="libraryShow" src="../images/library-24.png" alt="ShowLibrary" />
+						<img id="settingsShow" src="../images/settings-24.png" alt="ShowSettings" />
 					</td>
 					<td class="tweetCellWidth">
 						<div>
-							<img id="tweetTrack" src="../images/twitter-24.png" />
+							<img id="tweetTrack" src="../images/twitter-24.png" alt="Tweet" />
 						</div>
 					</td>
 				</tr>
 			</table>
 			<table class="fullWidth">
 				<tr>
-					<td colspan="2">
+					<td>
 						<b><i><label id="currentTrack"></label></i></b>
 					</td>
 				</tr>
@@ -50,9 +52,9 @@
 			</table>
 		</div>
 		<div id="libraryView">
-			<article id="libraries">
+			<div id="libraries">
 				No directories added.
-			</article>
+			</div>
 			<footer>
 				<button id="libraryAdd">Add</button>
 				<button id="libraryRemove">Remove selected</button>
@@ -60,7 +62,7 @@
 			</footer>
 		</div>
 		<div id="settingsView">
-			<article id="settings">
+			<div id="settings">
 				<table>
 					<tr>
 						<td>
@@ -76,10 +78,10 @@
 						</td>
 						<td>
 							<input id="recursivePref" type="checkbox" />
-						</td> -->
-					</tr>
+						</td>
+					</tr> -->
 				</table>
-			</article>
+			</div>
 			<footer>
 				<button id="settingsBack">Back</button>
 			</footer>

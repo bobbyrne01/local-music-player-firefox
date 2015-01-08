@@ -34,6 +34,14 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		validation: {
+			options: {
+				stoponerror: false
+			},
+			files: {
+				src: ['addon/data/html/*.html']
+			}
+		},
 		watch: {
 			files: ['<%= jshint.files %>'],
 			tasks: ['jshint']
@@ -69,9 +77,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-notify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks("grunt-jsbeautifier");
+	grunt.loadNpmTasks('grunt-html-validation');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-release');
 
-	grunt.registerTask('default', ['jsbeautifier', 'jshint']);
+	grunt.registerTask('default', ['jsbeautifier', 'jshint', 'validation']);
 	grunt.task.run('notify_hooks');
 };
