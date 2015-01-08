@@ -1,6 +1,7 @@
 local-music-player-firefox
 ==========================
 
+[![Build Status](https://travis-ci.org/bobbyrne01/local-music-player-firefox.svg?branch=master)](https://travis-ci.org/bobbyrne01/local-music-player-firefox)
 [![devDependency Status](https://david-dm.org/bobbyrne01/local-music-player-firefox/dev-status.svg)](https://david-dm.org/bobbyrne01/local-music-player-firefox#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
