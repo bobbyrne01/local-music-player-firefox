@@ -8,17 +8,16 @@ Firefox addon allowing user to listen to music stored on their local system.
 
 ### Features
 
-* Browse and listen to music stored locally
-* Multiple directories can be browsed at once, and are stored across sessions
-* Play, pause, previous, stop, next track buttons
-* Seek/skip through tracks
-* Play single track, by default
-* Repeat all tracks sequentially
-* Randomize track
-* Displays currently playing track
+* Add and remove music directories to library (stored across sessions)
+* Play, pause, previous, stop, next buttons
+* Seek/skip
+* Play single song (default)
+* Repeat all sequentially
+* Randomize
+* Displays currently playing song
 * Volume adjustment controls
 * Mute/unmute button
-* Notification when song starts
+* Optional, notification on song start
 
 ### Audio support
 
