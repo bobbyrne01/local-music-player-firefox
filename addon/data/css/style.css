@@ -2,7 +2,7 @@ html, body {
 	height: 97%;
 }
 .imageSpacing {
-    margin: 0px 5px;
+    margin: 1px 5px;
 }
 .libraryCellWidth {
     width: 95%;
@@ -19,16 +19,12 @@ html, body {
 .right {
     float: right;
 }
-#libraryView {
+.views {
 	display: none;
 	height: 100%;
 }
-#libraries {
+.libraryResults {
 	background-color: #E6E6E6;
 	overflow: auto;
 	max-height: 90%;
-}
-#settingsView {
-	display: none;
-	height: 100%;
 }
