@@ -136,7 +136,6 @@ var LocalMusicPlayer = {
 
 		var img = document.createElement('img');
 		img.src = "../images/play-24.png";
-		img.className = 'imageSpacing';
 
 		img.addEventListener('click', function (event) {
 
