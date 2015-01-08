@@ -36,7 +36,8 @@ module.exports = function (grunt) {
 		},
 		validation: {
 			options: {
-				stoponerror: false
+				stoponerror: false,
+				reset: true
 			},
 			files: {
 				src: ['addon/data/html/*.html']
