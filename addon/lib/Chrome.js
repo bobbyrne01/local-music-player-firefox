@@ -23,8 +23,15 @@ exports.selectDir = function () {
 	var ret = fp.show();
 
 	if (ret == nsIFilePicker.returnOK || ret == nsIFilePicker.returnReplace) {
+
 		var dirs = SimpleStorage.getDirectories();
-		dirs.push(fp.file.path);
+
+		// prevent duplicate directories
+		if (dirs.indexOf(fp.file.path) < 0) {
+
+			dirs.push(fp.file.path);
+		}
+
 		Panel.get().show(Button.get());
 	}
 };

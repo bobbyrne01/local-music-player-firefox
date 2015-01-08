@@ -1,12 +1,12 @@
 var fileIO = require("sdk/io/file");
 
-function compare(a,b) {
-	  if (a.filename < b.filename)
-	     return -1;
-	  if (a.filename > b.filename)
-	    return 1;
-	  return 0;
-	}
+function compare(a, b) {
+	if (a.filename < b.filename)
+		return -1;
+	if (a.filename > b.filename)
+		return 1;
+	return 0;
+}
 
 exports.list = function (dirs) {
 
@@ -30,14 +30,14 @@ exports.list = function (dirs) {
 				}
 			}
 		}
-		
+
 		// sort each directory separately, so songs in same folder appear in order
-		if (tempArrayForSorting.length > 0){
-			
+		if (tempArrayForSorting.length > 0) {
+
 			tempArrayForSorting.sort(compare);
-			
-			for (var k = 0; k < tempArrayForSorting.length; k++){
-				
+
+			for (var k = 0; k < tempArrayForSorting.length; k++) {
+
 				audio.push({
 					dir: tempArrayForSorting[k].dir,
 					filename: tempArrayForSorting[k].filename
