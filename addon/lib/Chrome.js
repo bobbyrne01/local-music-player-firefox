@@ -1,15 +1,11 @@
 var {
-	Cc, Ci, Cu, components
+	Cc, Ci
 } = require("chrome"),
 	Notification = require("./Notification"),
 	Panel = require("./Panel"),
 	Window = require("./Window"),
 	Button = require("./ToggleButton"),
 	SimpleStorage = require("./SimpleStorage");
-
-exports.getHomeDir = function () {
-	return Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties).get("Home", Ci.nsIFile);
-};
 
 exports.selectDir = function () {
 	var nsIFilePicker = Ci.nsIFilePicker,
@@ -28,7 +24,6 @@ exports.selectDir = function () {
 
 		// prevent duplicate directories
 		if (dirs.indexOf(fp.file.path) < 0) {
-
 			dirs.push(fp.file.path);
 		}
 
