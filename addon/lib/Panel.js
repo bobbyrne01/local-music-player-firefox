@@ -73,6 +73,10 @@ exports.init = function () {
 	panel.port.on("notificationSetting", function (value) {
 		Preference.set('notification', value);
 	});
+
+	panel.port.on("recursiveSetting", function (value) {
+		Preference.set('recursive', value);
+	});
 };
 
 exports.get = function () {
@@ -84,7 +88,8 @@ function populateUI() {
 		dirs: (SimpleStorage.getDirectories()),
 		separator: separator,
 		files: files,
-		notification: (Preference.get("notification") === undefined ? true : Preference.get("notification"))
+		notification: (Preference.get("notification") === undefined ? true : Preference.get("notification")),
+		recursive: (Preference.get("recursive") === undefined ? true : Preference.get("recursive")),
 	});
 
 	panel.port.emit("uiData", uiData);

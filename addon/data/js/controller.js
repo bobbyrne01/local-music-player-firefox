@@ -219,6 +219,13 @@ document.getElementById('notificationPref').addEventListener("change", function 
 		self.port.emit("notificationSetting", false);
 	}
 }, false);
+document.getElementById('recursivePref').addEventListener("change", function (event) {
+	if (document.getElementById('recursivePref').checked) {
+		self.port.emit("recursiveSetting", true);
+	} else {
+		self.port.emit("recursiveSetting", false);
+	}
+}, false);
 
 
 // populate panel with addon data when shown
@@ -286,4 +293,5 @@ self.port.on("uiData", function (uiData) {
 	}
 
 	document.getElementById('notificationPref').checked = parsed.notification;
+	document.getElementById('recursivePref').checked = parsed.recursive;
 });
