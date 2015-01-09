@@ -294,4 +294,10 @@ self.port.on("uiData", function (uiData) {
 
 	document.getElementById('notificationPref').checked = parsed.notification;
 	document.getElementById('recursivePref').checked = parsed.recursive;
+
+	if (parsed.recursive) {
+		self.port.emit("recursiveSetting", true);
+	} else {
+		self.port.emit("recursiveSetting", false);
+	}
 });
