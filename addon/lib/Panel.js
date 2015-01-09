@@ -50,13 +50,19 @@ exports.init = function () {
 
 	panel.port.on("dirsToRemove", function (dirsToRemove) {
 
-		Array.prototype.diff = function (a) {
-			return this.filter(function (i) {
-				return a.indexOf(i) < 0;
-			});
-		};
+		var currentDirs = SimpleStorage.getDirectories();
 
-		SimpleStorage.setDirectories(SimpleStorage.getDirectories().diff(dirsToRemove));
+		for (var i = 0; i < dirsToRemove.length; i++) {
+
+			for (var j = 0; j < currentDirs.length; j++) {
+
+				if (dirsToRemove[i] === currentDirs[j]) {
+					currentDirs.splice(j, 1);
+				}
+			}
+		}
+
+		SimpleStorage.setDirectories(currentDirs);
 		files = FileIO.list(SimpleStorage.getDirectories());
 
 		populateUI();
