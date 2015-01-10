@@ -65,6 +65,11 @@ var LocalMusicPlayer = {
 
 		var randomTrackNum = Math.floor((Math.random() * document.getElementById('tracks').rows.length));
 
+		while (randomTrackNum == LocalMusicPlayer.currentSongRow) {
+
+			randomTrackNum = Math.floor((Math.random() * document.getElementById('tracks').rows.length));
+		}
+
 		if (document.getElementById('tracks').rows[randomTrackNum]) {
 			LocalMusicPlayer.currentSongRow = randomTrackNum;
 			LocalMusicPlayer.play(
