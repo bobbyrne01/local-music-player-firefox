@@ -5,6 +5,50 @@ var LocalMusicPlayer = {
 	currentSongRow: null,
 	playStyle: 'one',
 
+	initEventListeners: function () {
+
+		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
+		document.getElementById('previousTrack').addEventListener('click', LocalMusicPlayer.previousTrack);
+		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
+		document.getElementById('repeatAll').addEventListener('click', function () {
+			LocalMusicPlayer.toggle(this);
+		});
+		document.getElementById('random').addEventListener('click', function () {
+			LocalMusicPlayer.toggle(this);
+		});
+		document.getElementById('libraryShow').addEventListener('click', function () {
+			LocalMusicPlayer.toggleView(this);
+		});
+		document.getElementById('tweetTrack').addEventListener('click', LocalMusicPlayer.tweetTrack);
+		document.getElementById('libraryAdd').addEventListener('click', LocalMusicPlayer.selectDir);
+		document.getElementById('libraryRemove').addEventListener('click', LocalMusicPlayer.removeDirs);
+		document.getElementById('libraryBack').addEventListener('click', function () {
+			LocalMusicPlayer.toggleView(this);
+		});
+		document.getElementById('settingsShow').addEventListener('click', function () {
+			LocalMusicPlayer.toggleView(this);
+		});
+		document.getElementById('settingsBack').addEventListener('click', function () {
+			LocalMusicPlayer.toggleView(this);
+		});
+		document.getElementById('notificationPref').addEventListener("change", function (event) {
+			if (document.getElementById('notificationPref').checked) {
+				self.port.emit("notificationSetting", true);
+			} else {
+				self.port.emit("notificationSetting", false);
+			}
+		}, false);
+		document.getElementById('recursivePref').addEventListener("change", function (event) {
+			if (document.getElementById('recursivePref').checked) {
+				self.port.emit("recursiveSetting", true);
+			} else {
+				self.port.emit("recursiveSetting", false);
+			}
+		}, false);
+		document.getElementById('filterBy').onkeyup = function (event) {
+			LocalMusicPlayer.filterBy();
+		};
+	},
 	selectDir: function () {
 		self.port.emit("selectDir", '');
 	},
@@ -188,49 +232,23 @@ var LocalMusicPlayer = {
 		if (dirsToRemove.length > 0) {
 			self.port.emit("dirsToRemove", dirsToRemove);
 		}
+	},
+	filterBy: function () {
+
+		for (var o = 0; o < document.getElementById('tracks').rows.length; o++) {
+			document.getElementById('tracks').rows[o].style.display = 'table-row';
+		}
+
+		for (var l = 0; l < document.getElementById('tracks').rows.length; l++) {
+			if (document.getElementById('tracks').rows[l].cells[1].textContent.toLowerCase().indexOf(document.getElementById('filterBy').value.toLowerCase()) < 0) {
+
+				document.getElementById('tracks').rows[l].style.display = 'none';
+			}
+		}
 	}
 };
 
-
-// event listeners
-document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
-document.getElementById('previousTrack').addEventListener('click', LocalMusicPlayer.previousTrack);
-document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
-document.getElementById('repeatAll').addEventListener('click', function () {
-	LocalMusicPlayer.toggle(this);
-});
-document.getElementById('random').addEventListener('click', function () {
-	LocalMusicPlayer.toggle(this);
-});
-document.getElementById('libraryShow').addEventListener('click', function () {
-	LocalMusicPlayer.toggleView(this);
-});
-document.getElementById('tweetTrack').addEventListener('click', LocalMusicPlayer.tweetTrack);
-document.getElementById('libraryAdd').addEventListener('click', LocalMusicPlayer.selectDir);
-document.getElementById('libraryRemove').addEventListener('click', LocalMusicPlayer.removeDirs);
-document.getElementById('libraryBack').addEventListener('click', function () {
-	LocalMusicPlayer.toggleView(this);
-});
-document.getElementById('settingsShow').addEventListener('click', function () {
-	LocalMusicPlayer.toggleView(this);
-});
-document.getElementById('settingsBack').addEventListener('click', function () {
-	LocalMusicPlayer.toggleView(this);
-});
-document.getElementById('notificationPref').addEventListener("change", function (event) {
-	if (document.getElementById('notificationPref').checked) {
-		self.port.emit("notificationSetting", true);
-	} else {
-		self.port.emit("notificationSetting", false);
-	}
-}, false);
-document.getElementById('recursivePref').addEventListener("change", function (event) {
-	if (document.getElementById('recursivePref').checked) {
-		self.port.emit("recursiveSetting", true);
-	} else {
-		self.port.emit("recursiveSetting", false);
-	}
-}, false);
+LocalMusicPlayer.initEventListeners();
 
 
 // populate panel with addon data when shown
