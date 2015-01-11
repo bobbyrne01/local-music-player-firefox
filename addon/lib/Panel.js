@@ -31,7 +31,7 @@ exports.init = function () {
 		width: 550,
 		height: 400,
 		contentURL: Data.get("html/view.html"),
-		contentScriptFile: [Data.get("lib/id3-minimized.js"), Data.get("js/controller.js")],
+		contentScriptFile: [Data.get("js/controller.js")],
 		position: Button.get(),
 		onShow: function () {
 			populateUI();
