@@ -323,6 +323,6 @@ self.port.on("uiData", function (uiData) {
 	} else {
 		self.port.emit("recursiveSetting", false);
 	}
-	
+
 	LocalMusicPlayer.filterBy();
 });
