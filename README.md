@@ -20,6 +20,8 @@ Firefox addon allowing user to listen to music stored on their local system.
 * Volume adjustment controls
 * Mute/unmute button
 * Optional, notification on song start
+* Filter songs using search textfield
+* Share current song via Twitter, Tumblr
 
 ### Audio support
 
