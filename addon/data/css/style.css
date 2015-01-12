@@ -4,10 +4,7 @@ html, body {
 .libraryCellWidth {
     width: 95%;
 }
-.tumblrCellWidth {
-    width:5%
-}
-.tweetCellWidth {
+.socialNetworkCell {
     width:5%
 }
 .fullWidth {
