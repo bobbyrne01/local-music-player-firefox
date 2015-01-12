@@ -4,6 +4,9 @@ html, body {
 .libraryCellWidth {
     width: 95%;
 }
+.tumblrCellWidth {
+    width:5%
+}
 .tweetCellWidth {
     width:5%
 }

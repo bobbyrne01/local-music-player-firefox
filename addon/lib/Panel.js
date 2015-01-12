@@ -72,7 +72,7 @@ exports.init = function () {
 		Notification.sendMsg('Playing: ' + filename);
 	});
 
-	panel.port.on("tweetTrack", function (url) {
+	panel.port.on("socialMedia", function (url) {
 		Tabs.open(url);
 	});
 

@@ -19,6 +19,7 @@ var LocalMusicPlayer = {
 		document.getElementById('libraryShow').addEventListener('click', function () {
 			LocalMusicPlayer.toggleView(this);
 		});
+		document.getElementById('tumblrTrack').addEventListener('click', LocalMusicPlayer.tumblrTrack);
 		document.getElementById('tweetTrack').addEventListener('click', LocalMusicPlayer.tweetTrack);
 		document.getElementById('libraryAdd').addEventListener('click', LocalMusicPlayer.selectDir);
 		document.getElementById('libraryRemove').addEventListener('click', LocalMusicPlayer.removeDirs);
@@ -160,13 +161,22 @@ var LocalMusicPlayer = {
 			LocalMusicPlayer.random();
 		}
 	},
-	tweetTrack: function () {
-
+	tumblrTrack: function () {
 		if (LocalMusicPlayer.currentSongRow !== null) {
+			var url = 'http://www.tumblr.com/share/link?url=https://addons.mozilla.org/firefox/addon/local-music-player&name=' +
+				encodeURIComponent('Listening to "' + document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML + '"') +
+				'&description=' +
+				encodeURIComponent('Using a Firefox addon called "Local Music Player", check it out.');
 
+			self.port.emit("socialMedia", url);
+		}
+	},
+	tweetTrack: function () {
+		if (LocalMusicPlayer.currentSongRow !== null) {
 			var url = 'https://twitter.com/intent/tweet?hashtags=LocalMusicPlayer&text=' +
 				encodeURIComponent('Listening to "' + document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML + '"');
-			self.port.emit("tweetTrack", url);
+
+			self.port.emit("socialMedia", url);
 		}
 	},
 	populateRow: function (song, iteration) {
