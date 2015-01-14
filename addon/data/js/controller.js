@@ -85,7 +85,7 @@ var LocalMusicPlayer = {
 			LocalMusicPlayer.random();
 
 		} else {
-			
+
 			if (LocalMusicPlayer.currentSongRow !== null) {
 
 				if (document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow + 1]) {
@@ -93,11 +93,11 @@ var LocalMusicPlayer = {
 					LocalMusicPlayer.play(
 						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
-	
+
 				} else {
-	
+
 					if (document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow] !== undefined) {
-	
+
 						LocalMusicPlayer.currentSongRow = 0;
 						LocalMusicPlayer.play(
 							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
@@ -108,16 +108,16 @@ var LocalMusicPlayer = {
 		}
 	},
 	random: function () {
-		
+
 		if (LocalMusicPlayer.currentSongRow !== null) {
 
 			var randomTrackNum = Math.floor((Math.random() * document.getElementById('tracks').rows.length));
-	
+
 			while (randomTrackNum == LocalMusicPlayer.currentSongRow) {
-	
+
 				randomTrackNum = Math.floor((Math.random() * document.getElementById('tracks').rows.length));
 			}
-	
+
 			if (document.getElementById('tracks').rows[randomTrackNum]) {
 				LocalMusicPlayer.currentSongRow = randomTrackNum;
 				LocalMusicPlayer.play(

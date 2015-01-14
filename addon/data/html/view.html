@@ -1,102 +1,105 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" media="all" href="../css/style.css"/>
-		<title>Local Music Player</title>
-	</head>
-	<body>
-		<div id="playerView">
-			<table class="fullWidth">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" media="all" href="../css/style.css" />
+	<title>Local Music Player</title>
+</head>
+
+<body>
+	<div id="playerView">
+		<table class="fullWidth">
+			<tr>
+				<td>
+					<audio id="player" preload="auto" controls class="fullWidth"></audio>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="left">
+						<img id="previousTrack" src="../images/previous-24.png" alt="Previous" />
+						<img id="stopTrack" src="../images/stop-24.png" alt="Stop" />
+						<img id="nextTrack" src="../images/next-24.png" alt="Next" />
+					</div>
+					<div class="right">
+						<img id="repeatAll" src="../images/repeatAll-24.png" alt="RepeatAll" />
+						<img id="random" src="../images/random-24.png" alt="Random" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table class="fullWidth">
+			<tr>
+				<td class="libraryCellWidth">
+					<img id="libraryShow" src="../images/library-24.png" alt="ShowLibrary" />
+					<img id="settingsShow" src="../images/settings-24.png" alt="ShowSettings" />
+				</td>
+				<td class="socialNetworkCell">
+					<div>
+						<img id="tumblrTrack" src="../images/tumblr-24.png" alt="Tumblr" />
+					</div>
+				</td>
+				<td class="socialNetworkCell">
+					<div>
+						<img id="tweetTrack" src="../images/twitter-24.png" alt="Tweet" />
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table class="fullWidth">
+			<tr>
+				<td>
+					<b><i><label id="currentTrack"></label></i></b>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<table class="fullWidth">
+			<tr>
+				<td>
+					<input id="filterBy" type="text" placeholder="Filter by" class="fullWidth" />
+				</td>
+			</tr>
+		</table>
+		<table id=tracks>
+		</table>
+	</div>
+	<div id="libraryView" class="views">
+		<div id="libraries" class="libraryResults">
+			No directories added.
+		</div>
+		<footer>
+			<button id="libraryAdd">Add</button>
+			<button id="libraryRemove">Remove selected</button>
+			<button id="libraryBack">Back</button>
+		</footer>
+	</div>
+	<div id="settingsView" class="views">
+		<div id="settings">
+			<table>
 				<tr>
 					<td>
-						<audio id="player" preload="auto" controls class="fullWidth"></audio>
+						Notification when song changes?
+					</td>
+					<td>
+						<input id="notificationPref" type="checkbox" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<div class="left">
-							<img id="previousTrack" src="../images/previous-24.png" alt="Previous" />
-							<img id="stopTrack" src="../images/stop-24.png" alt="Stop" />
-							<img id="nextTrack" src="../images/next-24.png" alt="Next" />
-						</div>
-						<div class="right">
-							<img id="repeatAll" src="../images/repeatAll-24.png" alt="RepeatAll" />
-							<img id="random" src="../images/random-24.png" alt="Random" />
-						</div>
+						Recursive directory scanning? (<b>Caution</b>: Large directory structures may cause Firefox to hang momentarily)
 					</td>
-				</tr>
-			</table>
-			<table class="fullWidth">
-				<tr>
-					<td class="libraryCellWidth">
-						<img id="libraryShow" src="../images/library-24.png" alt="ShowLibrary" />
-						<img id="settingsShow" src="../images/settings-24.png" alt="ShowSettings" />
-					</td>
-					<td class="socialNetworkCell">
-						<div>
-							<img id="tumblrTrack" src="../images/tumblr-24.png" alt="Tumblr" />
-						</div>
-					</td>
-					<td class="socialNetworkCell">
-						<div>
-							<img id="tweetTrack" src="../images/twitter-24.png" alt="Tweet" />
-						</div>
-					</td>
-				</tr>
-			</table>
-			<table class="fullWidth">
-				<tr>
 					<td>
-						<b><i><label id="currentTrack"></label></i></b>
+						<input id="recursivePref" type="checkbox" />
 					</td>
 				</tr>
-			</table>
-			<hr>
-			<table class="fullWidth">
-				<tr>
-					<td>
-						<input id="filterBy" type="text" placeholder="Filter by" class="fullWidth" />
-					</td>
-				</tr>
-			</table>
-			<table id=tracks>
 			</table>
 		</div>
-		<div id="libraryView" class="views">
-			<div id="libraries" class="libraryResults">
-				No directories added.
-			</div>
-			<footer>
-				<button id="libraryAdd">Add</button>
-				<button id="libraryRemove">Remove selected</button>
-				<button id="libraryBack">Back</button>
-			</footer>
-		</div>
-		<div id="settingsView" class="views">
-			<div id="settings">
-				<table>
-					<tr>
-						<td>
-							Notification when song changes?
-						</td>
-						<td>
-							<input id="notificationPref" type="checkbox" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Recursive directory scanning? (<b>Caution</b>: Large directory structures may cause Firefox to hang momentarily)
-						</td>
-						<td>
-							<input id="recursivePref" type="checkbox" />
-						</td>
-					</tr>
-				</table>
-			</div>
-			<footer>
-				<button id="settingsBack">Back</button>
-			</footer>
-		</div>
-	</body> 
+		<footer>
+			<button id="settingsBack">Back</button>
+		</footer>
+	</div>
+</body>
+
 </html>

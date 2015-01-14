@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 			}
 		},
 		jsbeautifier: {
-			files: ['<%= jshint.files %>'],
+			files: ['<%= jshint.files %>', 'addon/data/html/view.html'],
 			options: {
 				js: {
 					braceStyle: "collapse",
@@ -30,6 +30,16 @@ module.exports = function (grunt) {
 					spaceBeforeConditional: true,
 					spaceInParen: false,
 					unescapeStrings: false,
+					wrapLineLength: 0
+				},
+				html: {
+					braceStyle: "collapse",
+					indentChar: "\t",
+					indentScripts: "keep",
+					indentSize: 1,
+					maxPreserveNewlines: 10,
+					preserveNewlines: true,
+					unformatted: ["a", "sub", "sup", "b", "i", "u"],
 					wrapLineLength: 0
 				}
 			}
