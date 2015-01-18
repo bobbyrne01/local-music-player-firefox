@@ -4,7 +4,17 @@ var LocalMusicPlayer = {
 	playStyle: 'one',
 
 	initEventListeners: function () {
-
+		
+		document.getElementById("player").onplay = function() {
+			if (LocalMusicPlayer.currentSongRow === null) {
+				if (document.getElementById('tracks').rows[0]) {
+					LocalMusicPlayer.currentSongRow = 0;
+					LocalMusicPlayer.play(
+						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
+						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+				}
+			}
+		};
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
 		document.getElementById('previousTrack').addEventListener('click', LocalMusicPlayer.previousTrack);
 		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
