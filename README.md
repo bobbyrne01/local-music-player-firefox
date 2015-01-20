@@ -48,7 +48,7 @@ Addon uses `HTML5` `<audio>` element, which includes support for:
 * ru-RU
 * sv-SE
 * uk-UA
-* zh-CH
+* zh-CN
 
 ### Image attributions
 
