@@ -5,7 +5,7 @@
   "description": "Browse and listen to your local music",
   "author": "Robert Byrne",
   "license": "GNU GPL v3",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "permissions": {
     "private-browsing": true
   }
