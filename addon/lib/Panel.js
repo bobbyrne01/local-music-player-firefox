@@ -8,6 +8,7 @@ var Panel = require("sdk/panel"),
 	Tabs = require("./Tabs"),
 	SimpleStorage = require("./SimpleStorage"),
 	Preference = require("./Preference"),
+	Localisation = require("./Localisation"),
 	panel,
 	separator,
 	files;
@@ -96,6 +97,8 @@ function populateUI() {
 		files: files,
 		notification: (Preference.get("notification") === undefined ? true : Preference.get("notification")),
 		recursive: (Preference.get("recursive") === undefined ? true : Preference.get("recursive")),
+		noDirsString: Localisation.getString("noDirectoriesAdded_title"),
+		filterByString: Localisation.getString("filterBy_title")
 	});
 
 	panel.port.emit("uiData", uiData);

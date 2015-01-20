@@ -58,7 +58,7 @@
 		<table class="fullWidth">
 			<tr>
 				<td>
-					<input id="filterBy" type="text" placeholder="Filter by" class="fullWidth" />
+					<input id="filterBy" type="text" class="fullWidth" />
 				</td>
 			</tr>
 		</table>
@@ -67,12 +67,12 @@
 	</div>
 	<div id="libraryView" class="views">
 		<div id="libraries" class="libraryResults">
-			No directories added.
+			<label id="noDirectoriesAdded" data-l10n-id="noDirectoriesAdded_title"></label>
 		</div>
 		<footer>
-			<button id="libraryAdd">Add</button>
-			<button id="libraryRemove">Remove selected</button>
-			<button id="libraryBack">Back</button>
+			<button id="libraryAdd" data-l10n-id="add_title"></button>
+			<button id="libraryRemove" data-l10n-id="libraryRemove_title"></button>
+			<button id="libraryBack" data-l10n-id="back_title"></button>
 		</footer>
 	</div>
 	<div id="settingsView" class="views">
@@ -80,7 +80,7 @@
 			<table>
 				<tr>
 					<td>
-						Notification when song changes?
+						<label data-l10n-id="notificationSongChange_title"></label>
 					</td>
 					<td>
 						<input id="notificationPref" type="checkbox" />
@@ -88,7 +88,9 @@
 				</tr>
 				<tr>
 					<td>
-						Recursive directory scanning? (<b>Caution</b>: Large directory structures may cause Firefox to hang momentarily)
+						<label data-l10n-id="recursive1_title"></label> (
+						<b><label data-l10n-id="recursive2_title"></label></b>: 
+						<label data-l10n-id="recursive3_title"></label> )
 					</td>
 					<td>
 						<input id="recursivePref" type="checkbox" />
@@ -97,7 +99,7 @@
 			</table>
 		</div>
 		<footer>
-			<button id="settingsBack">Back</button>
+			<button id="settingsBack" data-l10n-id="back_title"></button>
 		</footer>
 	</div>
 </body>

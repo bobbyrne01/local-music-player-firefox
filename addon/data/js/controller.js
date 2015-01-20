@@ -327,7 +327,7 @@ self.port.on("uiData", function (uiData) {
 		}
 
 		document.getElementById('libraryRemove').disabled = true;
-		document.getElementById('libraries').appendChild(document.createTextNode('No directories added.'));
+		document.getElementById('libraries').appendChild(document.createTextNode(parsed.noDirsString));
 	}
 
 	// add music files to player view
@@ -348,5 +348,6 @@ self.port.on("uiData", function (uiData) {
 		self.port.emit("recursiveSetting", false);
 	}
 
+	document.getElementById('filterBy').placeholder = parsed.filterByString;
 	LocalMusicPlayer.filterBy();
 });

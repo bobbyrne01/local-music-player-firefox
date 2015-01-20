@@ -31,6 +31,25 @@ Addon uses `HTML5` `<audio>` element, which includes support for:
 * `.wav`
 * `.ogg`
 
+### Locale support
+
+* bg
+* cs-CZ
+* de-DE
+* en-GB
+* en-US
+* es-ES
+* fr-FR
+* it-IT
+* ja-JP
+* ko-KR
+* pl-PL
+* pt-PT
+* ru-RU
+* sv-SE
+* uk-UA
+* zh-CH
+
 ### Image attributions
 
 * App icon, https://www.iconfinder.com/icons/175749/music_record_icon
