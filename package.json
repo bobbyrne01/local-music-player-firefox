@@ -1,6 +1,6 @@
 {
   "name": "local-music-player-firefox",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Browse and listen to your local music",
   "main": "addon/lib/main.js",
   "scripts": {
