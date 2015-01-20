@@ -4,8 +4,8 @@ var LocalMusicPlayer = {
 	playStyle: 'one',
 
 	initEventListeners: function () {
-		
-		document.getElementById("player").onplay = function() {
+
+		document.getElementById("player").onplay = function () {
 			if (LocalMusicPlayer.currentSongRow === null) {
 				if (document.getElementById('tracks').rows[0]) {
 					LocalMusicPlayer.currentSongRow = 0;

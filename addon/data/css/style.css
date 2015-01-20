@@ -1,20 +1,37 @@
 html, body {
 	height: 97%;
 }
+.header {
+    position: fixed;
+    top: 0;
+}
+.content {
+	position: fixed;
+    top: 35%;
+    height: 65%;
+    overflow-y: scroll;
+    width: 98%;
+}
 .libraryCellWidth {
     width: 95%;
 }
 .socialNetworkCell {
     width:5%
 }
-.fullWidth {
+.childWidth {
     width: 100%;
+}
+.parentWidth {
+    width: 98%;
 }
 .left {
     float: left;
 }
 .right {
     float: right;
+}
+.noTextWrap {
+	white-space:nowrap;
 }
 .views {
 	display: none;

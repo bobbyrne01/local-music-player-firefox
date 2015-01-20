@@ -29,8 +29,8 @@ exports.init = function () {
 	files = FileIO.list(SimpleStorage.getDirectories());
 
 	panel = Panel.Panel({
-		width: 550,
-		height: 400,
+		width: 650,
+		height: 500,
 		contentURL: Data.get("html/view.html"),
 		contentScriptFile: [Data.get("js/controller.js")],
 		position: Button.get(),
