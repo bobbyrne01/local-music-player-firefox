@@ -42,3 +42,12 @@ html, body {
 	overflow: auto;
 	max-height: 90%;
 }
+.hide {
+	display: none;
+}
+.show {
+	display: inline;
+}
+.showRow {
+	display: table-row;
+}

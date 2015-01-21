@@ -7,11 +7,14 @@ var LocalMusicPlayer = {
 
 		document.getElementById("player").onplay = function () {
 			if (LocalMusicPlayer.currentSongRow === null) {
+				
 				if (document.getElementById('tracks').rows[0]) {
-					LocalMusicPlayer.currentSongRow = 0;
-					LocalMusicPlayer.play(
-						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
-						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+					if (document.querySelectorAll('#tracks tr.showRow ~ tr').length > 0) {
+						LocalMusicPlayer.currentSongRow = document.getElementById('tracks').rows.length - 1 - document.querySelectorAll('#tracks tr.showRow ~ tr').length;
+						LocalMusicPlayer.play(
+							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
+							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+					}
 				}
 			}
 		};
@@ -202,7 +205,7 @@ var LocalMusicPlayer = {
 
 		var dirText = document.createTextNode(song.dir);
 		cell0.appendChild(dirText);
-		cell0.style.display = 'none';
+		cell0.className = 'hide';
 
 		var filenameText = document.createTextNode(song.filename);
 		cell1.appendChild(filenameText);
@@ -222,23 +225,23 @@ var LocalMusicPlayer = {
 	toggleView: function (obj) {
 		if (obj.id === 'libraryShow') {
 
-			document.getElementById('playerView').style.display = 'none';
-			document.getElementById('libraryView').style.display = 'inline';
+			document.getElementById('playerView').className = 'hide';
+			document.getElementById('libraryView').className = 'inline';
 
 		} else if (obj.id === 'libraryBack') {
 
-			document.getElementById('libraryView').style.display = 'none';
-			document.getElementById('playerView').style.display = 'inline';
+			document.getElementById('libraryView').className = 'hide';
+			document.getElementById('playerView').className = 'inline';
 
 		} else if (obj.id === 'settingsShow') {
 
-			document.getElementById('playerView').style.display = 'none';
-			document.getElementById('settingsView').style.display = 'inline';
+			document.getElementById('playerView').className = 'hide';
+			document.getElementById('settingsView').className = 'inline';
 
 		} else if (obj.id === 'settingsBack') {
 
-			document.getElementById('settingsView').style.display = 'none';
-			document.getElementById('playerView').style.display = 'inline';
+			document.getElementById('settingsView').className = 'hide';
+			document.getElementById('playerView').className = 'inline';
 		}
 	},
 	removeDirs: function () {
@@ -260,13 +263,13 @@ var LocalMusicPlayer = {
 	filterBy: function () {
 
 		for (var o = 0; o < document.getElementById('tracks').rows.length; o++) {
-			document.getElementById('tracks').rows[o].style.display = 'table-row';
+			document.getElementById('tracks').rows[o].className = 'showRow';
 		}
 
 		for (var l = 0; l < document.getElementById('tracks').rows.length; l++) {
 			if (document.getElementById('tracks').rows[l].cells[1].textContent.toLowerCase().indexOf(document.getElementById('filterBy').value.toLowerCase()) < 0) {
 
-				document.getElementById('tracks').rows[l].style.display = 'none';
+				document.getElementById('tracks').rows[l].className = 'hide';
 			}
 		}
 	}
