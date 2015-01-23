@@ -49,7 +49,7 @@ exports.list = function (dirs) {
 				let item = fileIO.join(dirsTemp[j], files[i]);
 
 				if (fileIO.isFile(item)) {
-					if (item.endsWith('.mp3') || item.endsWith('.MP3') || item.endsWith('.wav') || item.endsWith('.WAV') || item.endsWith('.ogg') || item.endsWith('.OGG')) {
+					if (item.endsWith('.mp3') || item.endsWith('.MP3') || item.endsWith('.wav') || item.endsWith('.WAV') || item.endsWith('.ogg') || item.endsWith('.OGG') || item.endsWith('.mp4') || item.endsWith('.MP4')) {
 
 						tempArrayForSorting.push({
 							dir: dirsTemp[j],

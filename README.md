@@ -29,8 +29,13 @@ Firefox addon allowing user to listen to music stored on their local system.
 Addon uses `HTML5` `<audio>` element, which includes support for:
 
 * `.mp3`
+* `.mp4` \*
 * `.wav`
 * `.ogg`
+
+\* "Firefox supports the format in some cases, but only when a third-party decoder is available, and the device hardware can handle the profile used to encode the MP4." [reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats#MP4_H.264_%28AAC_or_MP3%29)
+
+More info [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats) on audio support within Firefox.
 
 ### Default hotkeys
 
