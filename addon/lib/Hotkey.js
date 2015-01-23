@@ -11,21 +11,21 @@ exports.init = function () {
 			Panel.get().port.emit('playTrack', '');
 		}
 	});
-	
+
 	Hotkey({
 		combo: "accel-shift-s",
 		onPress: function () {
 			Panel.get().port.emit('stopTrack', '');
 		}
 	});
-	
+
 	Hotkey({
 		combo: "accel-shift-right",
 		onPress: function () {
 			Panel.get().port.emit('nextTrack', '');
 		}
 	});
-	
+
 	Hotkey({
 		combo: "accel-shift-left",
 		onPress: function () {
