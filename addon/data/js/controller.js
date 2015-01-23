@@ -7,7 +7,7 @@ var LocalMusicPlayer = {
 
 		document.getElementById("player").onplay = function () {
 			if (LocalMusicPlayer.currentSongRow === null) {
-				
+
 				if (document.getElementById('tracks').rows[0]) {
 					if (document.querySelectorAll('#tracks tr.showRow ~ tr').length > 0) {
 						LocalMusicPlayer.currentSongRow = document.getElementById('tracks').rows.length - 1 - document.querySelectorAll('#tracks tr.showRow ~ tr').length;
@@ -353,4 +353,20 @@ self.port.on("uiData", function (uiData) {
 
 	document.getElementById('filterBy').placeholder = parsed.filterByString;
 	LocalMusicPlayer.filterBy();
+});
+
+self.port.on('playTrack', function () {
+	LocalMusicPlayer.play();
+});
+
+self.port.on('stopTrack', function () {
+	LocalMusicPlayer.stop();
+});
+
+self.port.on('nextTrack', function () {
+	LocalMusicPlayer.nextTrack();
+});
+
+self.port.on('previousTrack', function () {
+	LocalMusicPlayer.previousTrack();
 });
