@@ -31,6 +31,13 @@ Addon uses `HTML5` `<audio>` element, which includes support for:
 * `.wav`
 * `.ogg`
 
+### Default hotkeys
+
+* `accel-shift-p` .. Play track
+* `accel-shift-s` .. Stop track
+* `accel-shift-right` .. Next track
+* `accel-shift-left` .. Previous track
+
 ### Locale support
 
 * bg
