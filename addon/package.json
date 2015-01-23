@@ -8,5 +8,26 @@
 	"version": "0.9.0",
 	"permissions": {
 		"private-browsing": true
-	}
+	},
+	"preferences": [{
+		"name": "hotkeyPlay",
+		"title": "Play",
+		"type": "string",
+		"value": "accel-shift-p"
+	}, {
+		"name": "hotkeyStop",
+		"title": "Stop",
+		"type": "string",
+		"value": "accel-shift-s"
+	}, {
+		"name": "hotkeyNext",
+		"title": "Next",
+		"type": "string",
+		"value": "accel-shift-right"
+	}, {
+		"name": "hotkeyPrev",
+		"title": "Previous",
+		"type": "string",
+		"value": "accel-shift-left"
+	}]
 }

@@ -19,7 +19,7 @@ var LocalMusicPlayer = {
 			}
 		};
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
-		document.getElementById('previousTrack').addEventListener('click', LocalMusicPlayer.previousTrack);
+		document.getElementById('prevTrack').addEventListener('click', LocalMusicPlayer.prevTrack);
 		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
 		document.getElementById('repeatAll').addEventListener('click', function () {
 			LocalMusicPlayer.toggle(this);
@@ -60,18 +60,33 @@ var LocalMusicPlayer = {
 		document.getElementById('filterBy').onkeyup = function (event) {
 			LocalMusicPlayer.filterBy();
 		};
+		document.getElementById('hotkeyPlayPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyPlay", this.value);
+		};
+		document.getElementById('hotkeyStopPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyStop", this.value);
+		};
+		document.getElementById('hotkeyNextPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyNext", this.value);
+		};
+		document.getElementById('hotkeyPrevPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyPrev", this.value);
+		};
 	},
 	selectDir: function () {
 		self.port.emit("selectDir", '');
 	},
 	play: function (dir, filename) {
-		document.getElementById('player').src = 'file://' + dir + LocalMusicPlayer.separator + filename;
-		document.getElementById('player').play();
-
-		document.getElementById('currentTrack').textContent = filename;
-
-		if (document.getElementById('notificationPref').checked) {
-			self.port.emit("play", filename); // for notification
+		
+		if (document.getElementById('tracks').rows[0]) {
+			document.getElementById('player').src = 'file://' + dir + LocalMusicPlayer.separator + filename;
+			document.getElementById('player').play();
+	
+			document.getElementById('currentTrack').textContent = filename;
+	
+			if (document.getElementById('notificationPref').checked) {
+				self.port.emit("play", filename); // for notification
+			}
 		}
 	},
 	pause: function () {
@@ -84,7 +99,7 @@ var LocalMusicPlayer = {
 			document.getElementById('player').src = '';
 		}
 	},
-	previousTrack: function () {
+	prevTrack: function () {
 		if (document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow - 1]) {
 			LocalMusicPlayer.currentSongRow--;
 			LocalMusicPlayer.play(
@@ -351,6 +366,11 @@ self.port.on("uiData", function (uiData) {
 		self.port.emit("recursiveSetting", false);
 	}
 
+	document.getElementById('hotkeyPlayPref').value = parsed.hotkeyPlay;
+	document.getElementById('hotkeyStopPref').value = parsed.hotkeyStop;
+	document.getElementById('hotkeyNextPref').value = parsed.hotkeyNext;
+	document.getElementById('hotkeyPrevPref').value = parsed.hotkeyPrev;
+
 	document.getElementById('filterBy').placeholder = parsed.filterByString;
 	LocalMusicPlayer.filterBy();
 });
@@ -367,6 +387,38 @@ self.port.on('nextTrack', function () {
 	LocalMusicPlayer.nextTrack();
 });
 
-self.port.on('previousTrack', function () {
-	LocalMusicPlayer.previousTrack();
+self.port.on('prevTrack', function () {
+	LocalMusicPlayer.prevTrack();
+});
+
+self.port.on('hotkeyPlayStatus', function (value) {
+	if (value === true){
+		document.getElementById('hotkeyPlayPref').className = 'green';
+	}else{
+		document.getElementById('hotkeyPlayPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyStopStatus', function (value) {
+	if (value === true){
+		document.getElementById('hotkeyStopPref').className = 'green';
+	}else{
+		document.getElementById('hotkeyStopPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyNextStatus', function (value) {
+	if (value === true){
+		document.getElementById('hotkeyNextPref').className = 'green';
+	}else{
+		document.getElementById('hotkeyNextPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyPrevStatus', function (value) {
+	if (value === true){
+		document.getElementById('hotkeyPrevPref').className = 'green';
+	}else{
+		document.getElementById('hotkeyPrevPref').className = 'red';
+	}
 });

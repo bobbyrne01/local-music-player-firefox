@@ -30,6 +30,9 @@ html, body {
 .right {
     float: right;
 }
+.center {
+	text-align: center;
+}
 .noTextWrap {
 	white-space:nowrap;
 }
@@ -38,7 +41,6 @@ html, body {
 	height: 100%;
 }
 .libraryResults {
-	background-color: #E6E6E6;
 	overflow: auto;
 	max-height: 90%;
 }
@@ -50,4 +52,10 @@ html, body {
 }
 .showRow {
 	display: table-row;
+}
+.green {
+	background-color: #99FF66;
+}
+.red {
+	background-color: #FF5050;
 }

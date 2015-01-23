@@ -9,6 +9,7 @@ var Panel = require("sdk/panel"),
 	SimpleStorage = require("./SimpleStorage"),
 	Preference = require("./Preference"),
 	Localisation = require("./Localisation"),
+	Hotkey = require("./Hotkey"),
 	panel,
 	separator,
 	files;
@@ -84,6 +85,26 @@ exports.init = function () {
 	panel.port.on("recursiveSetting", function (value) {
 		Preference.set('recursive', value);
 	});
+	
+	panel.port.on("updateHotkeyPlay", function (value) {
+		Preference.set('hotkeyPlay', value);
+		panel.port.emit("hotkeyPlayStatus", Hotkey.reinitPlay());
+	});
+	
+	panel.port.on("updateHotkeyStop", function (value) {
+		Preference.set('hotkeyStop', value);
+		panel.port.emit("hotkeyStopStatus", Hotkey.reinitStop());
+	});
+	
+	panel.port.on("updateHotkeyNext", function (value) {
+		Preference.set('hotkeyNext', value);
+		panel.port.emit("hotkeyNextStatus", Hotkey.reinitNext());
+	});
+	
+	panel.port.on("updateHotkeyPrev", function (value) {
+		Preference.set('hotkeyPrev', value);
+		panel.port.emit("hotkeyPrevStatus", Hotkey.reinitPrev());
+	});
 };
 
 exports.get = function () {
@@ -98,7 +119,11 @@ function populateUI() {
 		notification: (Preference.get("notification") === undefined ? true : Preference.get("notification")),
 		recursive: (Preference.get("recursive") === undefined ? true : Preference.get("recursive")),
 		noDirsString: Localisation.getString("noDirectoriesAdded_title"),
-		filterByString: Localisation.getString("filterBy_title")
+		filterByString: Localisation.getString("filterBy_title"),
+		hotkeyPlay: Preference.get("hotkeyPlay"),
+		hotkeyStop: Preference.get("hotkeyStop"),
+		hotkeyNext: Preference.get("hotkeyNext"),
+		hotkeyPrev: Preference.get("hotkeyPrev")
 	});
 
 	panel.port.emit("uiData", uiData);
