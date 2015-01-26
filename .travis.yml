@@ -11,3 +11,11 @@ install: npm install
 
 script: 
     - grunt
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/f1be4ff8d8721375737d
+    on_success: change
+    on_failure: always
+    on_start: false
