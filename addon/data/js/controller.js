@@ -14,6 +14,9 @@ var LocalMusicPlayer = {
 						LocalMusicPlayer.play(
 							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+
+						LocalMusicPlayer.resetUnderline();
+						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
 					}
 				}
 			}
@@ -77,13 +80,13 @@ var LocalMusicPlayer = {
 		self.port.emit("selectDir", '');
 	},
 	play: function (dir, filename) {
-		
+
 		if (document.getElementById('tracks').rows[0]) {
 			document.getElementById('player').src = 'file://' + dir + LocalMusicPlayer.separator + filename;
 			document.getElementById('player').play();
-	
+
 			document.getElementById('currentTrack').textContent = filename;
-	
+
 			if (document.getElementById('notificationPref').checked) {
 				self.port.emit("play", filename); // for notification
 			}
@@ -97,6 +100,7 @@ var LocalMusicPlayer = {
 			document.getElementById('currentTrack').textContent = '';
 			LocalMusicPlayer.currentSongRow = null;
 			document.getElementById('player').src = '';
+			LocalMusicPlayer.resetUnderline();
 		}
 	},
 	prevTrack: function () {
@@ -105,6 +109,9 @@ var LocalMusicPlayer = {
 			LocalMusicPlayer.play(
 				document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 				document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+
+			LocalMusicPlayer.resetUnderline();
+			document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
 		}
 	},
 	nextTrack: function () {
@@ -122,6 +129,9 @@ var LocalMusicPlayer = {
 						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
 
+					LocalMusicPlayer.resetUnderline();
+					document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
+
 				} else {
 
 					if (document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow] !== undefined) {
@@ -130,6 +140,9 @@ var LocalMusicPlayer = {
 						LocalMusicPlayer.play(
 							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 							document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+
+						LocalMusicPlayer.resetUnderline();
+						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
 					}
 				}
 			}
@@ -151,6 +164,9 @@ var LocalMusicPlayer = {
 				LocalMusicPlayer.play(
 					document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
 					document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+
+				LocalMusicPlayer.resetUnderline();
+				document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
 			}
 		}
 	},
@@ -233,9 +249,19 @@ var LocalMusicPlayer = {
 			LocalMusicPlayer.currentSongRow = iteration;
 			LocalMusicPlayer.play(song.dir, song.filename);
 
+			LocalMusicPlayer.resetUnderline();
+			document.getElementById('tracks').rows[iteration].style.textDecoration = 'underline';
+
 		}, false);
 
 		cell2.appendChild(img);
+	},
+	resetUnderline: function () {
+
+		for (var j = 0; j < document.getElementById('tracks').rows.length; j++) {
+
+			document.getElementById('tracks').rows[j].style.textDecoration = '';
+		}
 	},
 	toggleView: function (obj) {
 		if (obj.id === 'libraryShow') {
@@ -392,33 +418,33 @@ self.port.on('prevTrack', function () {
 });
 
 self.port.on('hotkeyPlayStatus', function (value) {
-	if (value === true){
+	if (value === true) {
 		document.getElementById('hotkeyPlayPref').className = 'green';
-	}else{
+	} else {
 		document.getElementById('hotkeyPlayPref').className = 'red';
 	}
 });
 
 self.port.on('hotkeyStopStatus', function (value) {
-	if (value === true){
+	if (value === true) {
 		document.getElementById('hotkeyStopPref').className = 'green';
-	}else{
+	} else {
 		document.getElementById('hotkeyStopPref').className = 'red';
 	}
 });
 
 self.port.on('hotkeyNextStatus', function (value) {
-	if (value === true){
+	if (value === true) {
 		document.getElementById('hotkeyNextPref').className = 'green';
-	}else{
+	} else {
 		document.getElementById('hotkeyNextPref').className = 'red';
 	}
 });
 
 self.port.on('hotkeyPrevStatus', function (value) {
-	if (value === true){
+	if (value === true) {
 		document.getElementById('hotkeyPrevPref').className = 'green';
-	}else{
+	} else {
 		document.getElementById('hotkeyPrevPref').className = 'red';
 	}
 });

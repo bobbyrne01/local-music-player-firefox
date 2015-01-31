@@ -40,10 +40,10 @@ exports.init = function () {
 };
 
 exports.reinitPlay = function () {
-	
+
 	var status = true;
-	
-	try{
+
+	try {
 		hotkeyPlay.destroy();
 		hotkeyPlay = Hotkey({
 			combo: Preference.get("hotkeyPlay"),
@@ -51,18 +51,18 @@ exports.reinitPlay = function () {
 				Panel.get().port.emit('playTrack', '');
 			}
 		});
-	}catch(err){
+	} catch (err) {
 		status = false;
 	}
-	
+
 	return status;
 };
 
 exports.reinitStop = function () {
-	
+
 	var status = true;
-	
-	try{
+
+	try {
 		hotkeyStop.destroy();
 		hotkeyStop = Hotkey({
 			combo: Preference.get("hotkeyStop"),
@@ -70,18 +70,18 @@ exports.reinitStop = function () {
 				Panel.get().port.emit('stopTrack', '');
 			}
 		});
-	}catch(err){
+	} catch (err) {
 		status = false;
 	}
-	
+
 	return status;
 };
 
 exports.reinitNext = function () {
-	
+
 	var status = true;
-	
-	try{
+
+	try {
 		hotkeyNext.destroy();
 		hotkeyNext = Hotkey({
 			combo: Preference.get("hotkeyNext"),
@@ -89,18 +89,18 @@ exports.reinitNext = function () {
 				Panel.get().port.emit('nextTrack', '');
 			}
 		});
-	}catch(err){
+	} catch (err) {
 		status = false;
 	}
-	
+
 	return status;
 };
 
 exports.reinitPrev = function () {
-	
+
 	var status = true;
-	
-	try{
+
+	try {
 		hotkeyPrev.destroy();
 		hotkeyPrev = Hotkey({
 			combo: Preference.get("hotkeyPrev"),
@@ -108,9 +108,9 @@ exports.reinitPrev = function () {
 				Panel.get().port.emit('prevTrack', '');
 			}
 		});
-	}catch(err){
+	} catch (err) {
 		status = false;
 	}
-	
+
 	return status;
 };

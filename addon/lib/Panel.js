@@ -85,22 +85,22 @@ exports.init = function () {
 	panel.port.on("recursiveSetting", function (value) {
 		Preference.set('recursive', value);
 	});
-	
+
 	panel.port.on("updateHotkeyPlay", function (value) {
 		Preference.set('hotkeyPlay', value);
 		panel.port.emit("hotkeyPlayStatus", Hotkey.reinitPlay());
 	});
-	
+
 	panel.port.on("updateHotkeyStop", function (value) {
 		Preference.set('hotkeyStop', value);
 		panel.port.emit("hotkeyStopStatus", Hotkey.reinitStop());
 	});
-	
+
 	panel.port.on("updateHotkeyNext", function (value) {
 		Preference.set('hotkeyNext', value);
 		panel.port.emit("hotkeyNextStatus", Hotkey.reinitNext());
 	});
-	
+
 	panel.port.on("updateHotkeyPrev", function (value) {
 		Preference.set('hotkeyPrev', value);
 		panel.port.emit("hotkeyPrevStatus", Hotkey.reinitPrev());
