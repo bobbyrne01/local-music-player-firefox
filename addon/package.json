@@ -1,38 +1,33 @@
 {
-  "name": "local-music-player-firefox",
-  "title": "Local Music Player",
-  "id": "jid1-nCt6CO1kXSzfAg",
-  "description": "Browse and listen to your local music",
-  "author": "Robert Byrne",
-  "license": "GNU GPL v3",
-  "version": "0.9.3",
-  "permissions": {
-    "private-browsing": true
-  },
-  "preferences": [
-    {
-      "name": "hotkeyPlay",
-      "title": "Play",
-      "type": "string",
-      "value": "accel-shift-p"
-    },
-    {
-      "name": "hotkeyStop",
-      "title": "Stop",
-      "type": "string",
-      "value": "accel-shift-s"
-    },
-    {
-      "name": "hotkeyNext",
-      "title": "Next",
-      "type": "string",
-      "value": "accel-shift-right"
-    },
-    {
-      "name": "hotkeyPrev",
-      "title": "Previous",
-      "type": "string",
-      "value": "accel-shift-left"
-    }
-  ]
+	"name": "local-music-player-firefox",
+	"title": "Local Music Player",
+	"id": "jid1-nCt6CO1kXSzfAg",
+	"description": "Browse and listen to your local music",
+	"author": "Robert Byrne",
+	"license": "GNU GPL v3",
+	"version": "0.9.3",
+	"permissions": {
+		"private-browsing": true
+	},
+	"preferences": [{
+		"name": "hotkeyPlay",
+		"title": "Play",
+		"type": "string",
+		"value": "accel-shift-p"
+	}, {
+		"name": "hotkeyStop",
+		"title": "Stop",
+		"type": "string",
+		"value": "accel-shift-s"
+	}, {
+		"name": "hotkeyNext",
+		"title": "Next",
+		"type": "string",
+		"value": "accel-shift-right"
+	}, {
+		"name": "hotkeyPrev",
+		"title": "Previous",
+		"type": "string",
+		"value": "accel-shift-left"
+	}]
 }
