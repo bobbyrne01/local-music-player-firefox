@@ -79,6 +79,15 @@ exports.init = function () {
 			value: filename
 		});
 		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
+		Toolbar.setPlaying(true);
+	});
+	
+	panel.port.on("pause", function () {
+		Toolbar.setPlaying(false);
+	});
+	
+	panel.port.on("resume", function () {
+		Toolbar.setPlaying(true);
 	});
 
 	panel.port.on("stop", function () {
@@ -86,6 +95,7 @@ exports.init = function () {
 			operation: 'stop'
 		});
 		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
+		Toolbar.setPlaying(false);
 	});
 
 	panel.port.on("socialMedia", function (url) {

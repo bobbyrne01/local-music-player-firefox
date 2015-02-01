@@ -10,9 +10,29 @@ var {
 var Data = require("./Data"),
 	Localisation = require("./Localisation"),
 	Panel = require("./Panel"),
-	frameObject;
+	frameObject,
+	playButton,
+	playing = false;
 
 exports.init = function () {
+	
+	playButton = ActionButton({
+		id: "localmusicplayer-play",
+		label: Localisation.getString("hotkeyPlay_title"),
+		icon: Data.get("images/play-24.png"),
+		onClick: function (state) {
+			
+			if (playing) {
+				Panel.get().port.emit("pauseTrack", '');
+				playing = false;
+				playButton.icon = Data.get("images/play-24.png");
+			}else{
+				Panel.get().port.emit("playTrack", '');
+				playing = true;
+				playButton.icon = Data.get("images/pause-24.png");
+			}
+		}
+	});
 
 	var previous = ActionButton({
 		id: "localmusicplayer-prev",
@@ -48,10 +68,21 @@ exports.init = function () {
 	var toolbar = Toolbar({
 		title: Localisation.getString("addonName_title"),
 		hidden: true,
-		items: [previous, stop, next, frameObject]
+		items: [playButton, previous, stop, next, frameObject]
 	});
 };
 
 exports.getFrame = function () {
 	return frameObject;
+};
+
+exports.setPlaying = function (value) {
+	playing = value;
+	
+	// if play clicked from a panel row
+	if (playing) {
+		playButton.icon = Data.get("images/pause-24.png");
+	}else{
+		playButton.icon = Data.get("images/play-24.png");
+	}
 };

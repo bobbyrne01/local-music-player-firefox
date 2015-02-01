@@ -19,6 +19,22 @@ var LocalMusicPlayer = {
 						document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].style.textDecoration = 'underline';
 					}
 				}
+			} else {
+				if (document.getElementById('tracks').rows[0]) {
+					if (document.querySelectorAll('#tracks tr.showRow ~ tr').length > 0) {
+						self.port.emit('resume', '');
+					}
+				}
+			}
+		};
+		document.getElementById("player").onpause = function () {
+			if (LocalMusicPlayer.currentSongRow !== null) {
+
+				if (document.getElementById('tracks').rows[0]) {
+					if (document.querySelectorAll('#tracks tr.showRow ~ tr').length > 0) {
+						self.port.emit('pause', '');
+					}
+				}
 			}
 		};
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
@@ -92,8 +108,12 @@ var LocalMusicPlayer = {
 			}
 		}
 	},
+	resume: function () {
+		document.getElementById('player').play();
+	},
 	pause: function () {
 		document.getElementById('player').pause();
+		self.port.emit("pause", '');
 	},
 	stop: function () {
 		if (LocalMusicPlayer.currentSongRow !== null) {
@@ -404,7 +424,15 @@ self.port.on("uiData", function (uiData) {
 });
 
 self.port.on('playTrack', function () {
-	LocalMusicPlayer.play();
+	if (document.getElementById('player').paused){
+		LocalMusicPlayer.resume();
+	}else{
+		LocalMusicPlayer.play();
+	}
+});
+
+self.port.on('pauseTrack', function () {
+	LocalMusicPlayer.pause();
 });
 
 self.port.on('stopTrack', function () {
