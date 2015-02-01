@@ -4,10 +4,13 @@ var {
 var {
 	Toolbar
 } = require("sdk/ui/toolbar");
-//var { Frame } = require("sdk/ui/frame"),
+var {
+	Frame
+} = require("sdk/ui/frame");
 var Data = require("./Data"),
 	Localisation = require("./Localisation"),
-	Panel = require("./Panel");
+	Panel = require("./Panel"),
+	frameObject;
 
 exports.init = function () {
 
@@ -19,7 +22,7 @@ exports.init = function () {
 			Panel.get().port.emit("prevTrack", '');
 		}
 	});
-	
+
 	var stop = ActionButton({
 		id: "localmusicplayer-stop",
 		label: Localisation.getString("hotkeyStop_title"),
@@ -38,19 +41,17 @@ exports.init = function () {
 		}
 	});
 
-	/*var play = ActionButton({
-	  id: "play",
-	  label: "play",
-	  icon: "./icons/play.png"
+	frameObject = new Frame({
+		url: Data.get("html/FrameView.html")
 	});
-
-	var frame = new Frame({
-	  url: "./frame-player.html"
-	});*/
 
 	var toolbar = Toolbar({
 		title: Localisation.getString("addonName_title"),
 		hidden: true,
-		items: [previous, stop, next]
+		items: [previous, stop, next, frameObject]
 	});
+};
+
+exports.getFrame = function () {
+	return frameObject;
 };

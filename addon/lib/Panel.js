@@ -10,6 +10,7 @@ var Panel = require("sdk/panel"),
 	Preference = require("./Preference"),
 	Localisation = require("./Localisation"),
 	Hotkey = require("./Hotkey"),
+	Toolbar = require("./Toolbar"),
 	panel,
 	separator,
 	files;
@@ -72,6 +73,19 @@ exports.init = function () {
 
 	panel.port.on("play", function (filename) {
 		Notification.sendMsg('Playing: ' + filename);
+
+		var payload = JSON.stringify({
+			operation: 'play',
+			value: filename
+		});
+		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
+	});
+
+	panel.port.on("stop", function () {
+		var payload = JSON.stringify({
+			operation: 'stop'
+		});
+		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
 	});
 
 	panel.port.on("socialMedia", function (url) {

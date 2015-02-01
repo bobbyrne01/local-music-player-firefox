@@ -101,6 +101,8 @@ var LocalMusicPlayer = {
 			LocalMusicPlayer.currentSongRow = null;
 			document.getElementById('player').src = '';
 			LocalMusicPlayer.resetUnderline();
+
+			self.port.emit('stop', '');
 		}
 	},
 	prevTrack: function () {
