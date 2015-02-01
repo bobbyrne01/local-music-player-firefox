@@ -19,6 +19,15 @@ exports.init = function () {
 			Panel.get().port.emit("prevTrack", '');
 		}
 	});
+	
+	var stop = ActionButton({
+		id: "localmusicplayer-stop",
+		label: Localisation.getString("hotkeyStop_title"),
+		icon: Data.get("images/stop-24.png"),
+		onClick: function (state) {
+			Panel.get().port.emit("stopTrack", '');
+		}
+	});
 
 	var next = ActionButton({
 		id: "localmusicplayer-next",
@@ -42,6 +51,6 @@ exports.init = function () {
 	var toolbar = Toolbar({
 		title: Localisation.getString("addonName_title"),
 		hidden: true,
-		items: [previous, next]
+		items: [previous, stop, next]
 	});
 };
