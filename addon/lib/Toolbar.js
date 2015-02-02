@@ -126,6 +126,7 @@ exports.setPlaying = function (value) {
 exports.setRepeatAll = function (value) {
 	if (value) {
 		repeatAll.badge = "~";
+		random.badge = "";
 	} else {
 		repeatAll.badge = "";
 	}
@@ -134,6 +135,7 @@ exports.setRepeatAll = function (value) {
 exports.setRandom = function (value) {
 	if (value) {
 		random.badge = "~";
+		repeatAll.badge = "";
 	} else {
 		random.badge = "";
 	}
