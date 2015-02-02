@@ -41,10 +41,10 @@ var LocalMusicPlayer = {
 		document.getElementById('prevTrack').addEventListener('click', LocalMusicPlayer.prevTrack);
 		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
 		document.getElementById('repeatAll').addEventListener('click', function () {
-			LocalMusicPlayer.toggle(this);
+			LocalMusicPlayer.toggle(this.id);
 		});
 		document.getElementById('random').addEventListener('click', function () {
-			LocalMusicPlayer.toggle(this);
+			LocalMusicPlayer.toggle(this.id);
 		});
 		document.getElementById('libraryShow').addEventListener('click', function () {
 			LocalMusicPlayer.toggleView(this);
@@ -192,34 +192,42 @@ var LocalMusicPlayer = {
 			}
 		}
 	},
-	toggle: function (obj) {
+	toggle: function (id) {
 
-		if (obj.id === 'repeatAll') {
+		if (id === 'repeatAll') {
 
-			if (obj.id === LocalMusicPlayer.playStyle) {
+			if (id === LocalMusicPlayer.playStyle) {
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '';
 				LocalMusicPlayer.playStyle = 'one';
 				document.getElementById('player').removeEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('repeatAll', false);
 			} else {
 				document.getElementById('repeatAll').style.backgroundColor = '#B2B2B2';
 				document.getElementById('random').style.backgroundColor = '';
 				LocalMusicPlayer.playStyle = 'repeatAll';
 				document.getElementById('player').addEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('repeatAll', true);
 			}
 
-		} else if (obj.id === 'random') {
+		} else if (id === 'random') {
 
-			if (obj.id === LocalMusicPlayer.playStyle) {
+			if (id === LocalMusicPlayer.playStyle) {
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '';
 				LocalMusicPlayer.playStyle = 'one';
 				document.getElementById('player').removeEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('random', false);
 			} else {
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '#B2B2B2';
 				LocalMusicPlayer.playStyle = 'random';
 				document.getElementById('player').addEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('random', true);
 			}
 		}
 	},
@@ -445,6 +453,14 @@ self.port.on('nextTrack', function () {
 
 self.port.on('prevTrack', function () {
 	LocalMusicPlayer.prevTrack();
+});
+
+self.port.on('repeatAll', function () {
+	LocalMusicPlayer.toggle('repeatAll');
+});
+
+self.port.on('random', function () {
+	LocalMusicPlayer.toggle('random');
 });
 
 self.port.on('hotkeyPlayStatus', function (value) {

@@ -98,6 +98,14 @@ exports.init = function () {
 		Toolbar.setPlaying(false);
 	});
 
+	panel.port.on("repeatAll", function (value) {
+		Toolbar.setRepeatAll(value);
+	});
+
+	panel.port.on("random", function (value) {
+		Toolbar.setRandom(value);
+	});
+
 	panel.port.on("socialMedia", function (url) {
 		Tabs.open(url);
 	});

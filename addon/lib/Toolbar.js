@@ -12,6 +12,8 @@ var Data = require("./Data"),
 	Panel = require("./Panel"),
 	frameObject,
 	playButton,
+	repeatAll,
+	random,
 	playing = false;
 
 exports.init = function () {
@@ -65,10 +67,44 @@ exports.init = function () {
 		url: Data.get("html/FrameView.html")
 	});
 
+	repeatAll = ActionButton({
+		id: "localmusicplayer-repeatAll",
+		label: Localisation.getString("repeatAll_title"),
+		icon: Data.get("images/repeatAll-24.png"),
+		onClick: function (state) {
+			Panel.get().port.emit("repeatAll", '');
+
+			if (this.badge === '~') {
+
+				this.badge = "";
+			} else {
+				this.badge = "~";
+				random.badge = "";
+			}
+		}
+	});
+
+	random = ActionButton({
+		id: "localmusicplayer-random",
+		label: Localisation.getString("random_title"),
+		icon: Data.get("images/random-24.png"),
+		onClick: function (state) {
+			Panel.get().port.emit("random", '');
+
+			if (this.badge === '~') {
+
+				this.badge = "";
+			} else {
+				this.badge = "~";
+				repeatAll.badge = "";
+			}
+		}
+	});
+
 	var toolbar = Toolbar({
 		title: Localisation.getString("addonName_title"),
-		hidden: true,
-		items: [playButton, previous, stop, next, frameObject]
+		//hidden: true,
+		items: [playButton, previous, stop, next, frameObject, repeatAll, random]
 	});
 };
 
@@ -84,5 +120,21 @@ exports.setPlaying = function (value) {
 		playButton.icon = Data.get("images/pause-24.png");
 	} else {
 		playButton.icon = Data.get("images/play-24.png");
+	}
+};
+
+exports.setRepeatAll = function (value) {
+	if (value) {
+		repeatAll.badge = "~";
+	} else {
+		repeatAll.badge = "";
+	}
+};
+
+exports.setRandom = function (value) {
+	if (value) {
+		random.badge = "~";
+	} else {
+		random.badge = "";
 	}
 };
