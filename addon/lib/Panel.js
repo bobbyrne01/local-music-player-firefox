@@ -33,8 +33,8 @@ exports.init = function () {
 	panel = Panel.Panel({
 		width: 650,
 		height: 500,
-		contentURL: Data.get("html/view.html"),
-		contentScriptFile: [Data.get("js/controller.js")],
+		contentURL: Data.get("html/PanelView.html"),
+		contentScriptFile: [Data.get("js/PanelController.js")],
 		position: Button.get(),
 		onShow: function () {
 			populateUI();
@@ -81,11 +81,11 @@ exports.init = function () {
 		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
 		Toolbar.setPlaying(true);
 	});
-	
+
 	panel.port.on("pause", function () {
 		Toolbar.setPlaying(false);
 	});
-	
+
 	panel.port.on("resume", function () {
 		Toolbar.setPlaying(true);
 	});

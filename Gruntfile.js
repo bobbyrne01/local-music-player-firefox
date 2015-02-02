@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 			}
 		},
 		jsbeautifier: {
-			files: ['<%= jshint.files %>', 'addon/data/html/view.html'],
+			files: ['<%= jshint.files %>', 'addon/data/html/view.html', 'addon/data/html/FrameView.html'],
 			options: {
 				js: {
 					braceStyle: "collapse",

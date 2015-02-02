@@ -15,18 +15,18 @@ var Data = require("./Data"),
 	playing = false;
 
 exports.init = function () {
-	
+
 	playButton = ActionButton({
 		id: "localmusicplayer-play",
 		label: Localisation.getString("hotkeyPlay_title"),
 		icon: Data.get("images/play-24.png"),
 		onClick: function (state) {
-			
+
 			if (playing) {
 				Panel.get().port.emit("pauseTrack", '');
 				playing = false;
 				playButton.icon = Data.get("images/play-24.png");
-			}else{
+			} else {
 				Panel.get().port.emit("playTrack", '');
 				playing = true;
 				playButton.icon = Data.get("images/pause-24.png");
@@ -78,11 +78,11 @@ exports.getFrame = function () {
 
 exports.setPlaying = function (value) {
 	playing = value;
-	
+
 	// if play clicked from a panel row
 	if (playing) {
 		playButton.icon = Data.get("images/pause-24.png");
-	}else{
+	} else {
 		playButton.icon = Data.get("images/play-24.png");
 	}
 };

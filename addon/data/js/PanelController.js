@@ -424,9 +424,9 @@ self.port.on("uiData", function (uiData) {
 });
 
 self.port.on('playTrack', function () {
-	if (document.getElementById('player').paused){
+	if (document.getElementById('player').paused) {
 		LocalMusicPlayer.resume();
-	}else{
+	} else {
 		LocalMusicPlayer.play();
 	}
 });
