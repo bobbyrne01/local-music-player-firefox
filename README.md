@@ -24,6 +24,7 @@ Firefox addon allowing user to listen to music stored on their local system.
 * Filter songs using search textfield
 * Share current song via Twitter, Tumblr
 * Default hotkeys provided (+user configurable)
+* Optional, toolbar with various buttons and current track label
 
 ### Audio support
 
