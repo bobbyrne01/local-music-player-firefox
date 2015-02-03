@@ -62,6 +62,20 @@ module.exports = function (grunt) {
 				src: ['addon/data/css/*.css']
 			}
 		},
+		imagemin: {
+			png: {
+				options: {
+					optimizationLevel: 0
+				},
+				files: [{
+					expand: true,
+					cwd: 'addon/data/images/',
+					src: ['*.png'],
+					dest: 'dist/data/images/',
+					ext: '.png'
+				}]
+			}
+		},
 		watch: {
 			files: ['<%= jshint.files %>'],
 			tasks: ['jshint']
@@ -99,9 +113,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-jsbeautifier");
 	grunt.loadNpmTasks('grunt-html-validation');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-release');
 
 	grunt.registerTask('default', ['jsbeautifier', 'jshint', 'validation', 'csslint']);
+	grunt.registerTask('build', ['imagemin']);
 	grunt.task.run('notify_hooks');
 };
