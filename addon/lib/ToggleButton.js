@@ -11,7 +11,8 @@ exports.init = function () {
 		id: "local-music-player-widget",
 		label: 'Local Music Player',
 		icon: Data.get("images/ico-64.png"),
-		onChange: handleChange
+		onChange: handleChange,
+		badgeColor: "#000000"
 	});
 };
 
