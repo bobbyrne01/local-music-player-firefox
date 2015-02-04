@@ -34,7 +34,10 @@ exports.init = function () {
 		width: 650,
 		height: 500,
 		contentURL: Data.get("html/PanelView.html"),
-		contentScriptFile: [Data.get("js/PanelController.js")],
+		contentScriptFile: [
+			Data.get("js/Panel_Logic.js"),
+			Data.get("js/Panel_ListenForMessages.js")
+		],
 		position: Button.get(),
 		onShow: function () {
 			populateUI();
