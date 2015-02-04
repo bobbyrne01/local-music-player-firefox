@@ -6,7 +6,11 @@ window.addEventListener("message", function (event) {
 
 		document.getElementById('frameCurrentTrack').textContent = payload.value;
 
-	} else {
+	} else if (payload.operation === 'updateProgressBar'){
+		
+		document.getElementById('frameProgressBar').value = payload.value;
+	}else {
+		
 		document.getElementById('frameCurrentTrack').textContent = '';
 	}
 

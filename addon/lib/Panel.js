@@ -81,6 +81,14 @@ exports.init = function () {
 		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url);
 		Toolbar.setPlaying(true);
 	});
+	
+	panel.port.on("updateProgressBar", function (value) {
+		var payload = JSON.stringify({
+			operation: 'updateProgressBar',
+			value: value
+		});
+		Toolbar.getFrame().postMessage(payload, Toolbar.getFrame().url)
+	});
 
 	panel.port.on("pause", function () {
 		Toolbar.setPlaying(false);

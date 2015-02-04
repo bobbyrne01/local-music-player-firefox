@@ -37,6 +37,12 @@ var LocalMusicPlayer = {
 				}
 			}
 		};
+		document.getElementById("player").ontimeupdate = function () {
+			self.port.emit(
+					'updateProgressBar', 
+					document.getElementById("player").currentTime / 
+					document.getElementById("player").duration);
+		};
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
 		document.getElementById('prevTrack').addEventListener('click', LocalMusicPlayer.prevTrack);
 		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
