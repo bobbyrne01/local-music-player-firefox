@@ -39,9 +39,9 @@ var LocalMusicPlayer = {
 		};
 		document.getElementById("player").ontimeupdate = function () {
 			self.port.emit(
-					'updateProgressBar', 
-					document.getElementById("player").currentTime / 
-					document.getElementById("player").duration);
+				'updateProgressBar',
+				document.getElementById("player").currentTime /
+				document.getElementById("player").duration);
 		};
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
 		document.getElementById('prevTrack').addEventListener('click', LocalMusicPlayer.prevTrack);
@@ -443,6 +443,11 @@ self.port.on('playTrack', function () {
 	} else {
 		LocalMusicPlayer.play();
 	}
+});
+
+self.port.on('updateAudioBar', function (value) {
+
+	document.getElementById('player').currentTime = value * document.getElementById("player").duration;
 });
 
 self.port.on('pauseTrack', function () {

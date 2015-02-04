@@ -66,6 +66,8 @@ exports.init = function () {
 		url: Data.get("html/FrameView.html")
 	});
 
+	frameObject.on("message", updateAudioBar);
+
 	repeatAll = ActionButton({
 		id: "localmusicplayer-repeatAll",
 		label: Localisation.getString("repeatAll_title"),
@@ -143,3 +145,12 @@ exports.setRandom = function (value) {
 		random.badge = "";
 	}
 };
+
+function updateAudioBar(e) {
+
+	var payload = JSON.parse(e.data);
+
+	if (payload.operation === "updateAudioBar") {
+		Panel.get().port.emit('updateAudioBar', payload.value);
+	}
+}
