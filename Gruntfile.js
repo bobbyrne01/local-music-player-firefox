@@ -62,10 +62,45 @@ module.exports = function (grunt) {
 				src: ['addon/data/css/*.css']
 			}
 		},
+		copy: {
+			main: {
+				files: [{
+					expand: true,
+					cwd: 'addon/',
+					src: ['lib/*.js'],
+					dest: 'dist/'
+				}, {
+					expand: true,
+					cwd: 'addon/',
+					src: ['locale/*.properties'],
+					dest: 'dist/'
+				}, {
+					expand: true,
+					cwd: 'addon/data/html/',
+					src: ['*.html'],
+					dest: 'dist/data/html/'
+				}, {
+					expand: true,
+					cwd: 'addon/data/css/',
+					src: ['*.css'],
+					dest: 'dist/data/css/'
+				}, {
+					expand: true,
+					cwd: 'addon/data/js/',
+					src: ['*.js'],
+					dest: 'dist/data/js/'
+				}, {
+					expand: true,
+					cwd: 'addon/',
+					src: ['package.json'],
+					dest: 'dist/'
+				}]
+			}
+		},
 		imagemin: {
 			png: {
 				options: {
-					optimizationLevel: 0
+					optimizationLevel: 7
 				},
 				files: [{
 					expand: true,
@@ -113,11 +148,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-jsbeautifier");
 	grunt.loadNpmTasks('grunt-html-validation');
 	grunt.loadNpmTasks('grunt-contrib-csslint');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-release');
 
 	grunt.registerTask('default', ['jsbeautifier', 'jshint', 'validation', 'csslint']);
-	grunt.registerTask('build', ['imagemin']);
+	grunt.registerTask('build', ['copy', 'imagemin']);
 	grunt.task.run('notify_hooks');
 };
