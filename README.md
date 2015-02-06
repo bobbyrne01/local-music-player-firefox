@@ -81,9 +81,9 @@ More info [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_med
     
 ### Run
 
-    rob@work:~/git/local-music-player-firefox$ cd addon/
-    rob@work:~/git/local-music-player-firefox/addon$ ~/apps/addon-sdk-1.17/bin/cfx run
+    rob@work:~/git/local-music-player-firefox$ cd dist/
+    rob@work:~/git/local-music-player-firefox/dist$ ~/apps/addon-sdk-1.17/bin/cfx run
 
 ### Package
 
-    rob@work:~/git/local-music-player-firefox/addon$ ~/apps/addon-sdk-1.17/bin/cfx xpi
+    rob@work:~/git/local-music-player-firefox/dist$ ~/apps/addon-sdk-1.17/bin/cfx xpi
