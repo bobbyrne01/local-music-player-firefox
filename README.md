@@ -69,3 +69,21 @@ More info [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_med
 
 * App icon, https://www.iconfinder.com/icons/175749/music_record_icon
 * Control icons, http://icons4android.com
+
+### Development
+
+    npm install
+    grunt
+
+### Build
+
+    grunt build
+    
+### Run
+
+    rob@work:~/git/local-music-player-firefox$ cd addon/
+    rob@work:~/git/local-music-player-firefox/addon$ ~/apps/addon-sdk-1.17/bin/cfx run
+
+### Package
+
+    rob@work:~/git/local-music-player-firefox/addon$ ~/apps/addon-sdk-1.17/bin/cfx xpi
