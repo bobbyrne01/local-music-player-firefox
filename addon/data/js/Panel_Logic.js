@@ -97,6 +97,9 @@ var LocalMusicPlayer = {
 		document.getElementById('hotkeyPrevPref').onkeyup = function (event) {
 			self.port.emit("updateHotkeyPrev", this.value);
 		};
+		document.getElementById('hotkeyRandomPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyRandom", this.value);
+		};
 	},
 	selectDir: function () {
 		self.port.emit("selectDir", '');

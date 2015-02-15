@@ -75,6 +75,8 @@ self.port.on("uiData", function (uiData) {
 	document.getElementById('hotkeyStopPref').value = parsed.hotkeyStop;
 	document.getElementById('hotkeyNextPref').value = parsed.hotkeyNext;
 	document.getElementById('hotkeyPrevPref').value = parsed.hotkeyPrev;
+	document.getElementById('hotkeyRandomPref').value = parsed.hotkeyRandom;
+	document.getElementById('hotkeyRepeatAllPref').value = parsed.hotkeyRepeatAll;
 
 	document.getElementById('filterBy').placeholder = parsed.filterByString;
 	LocalMusicPlayer.filterBy();
@@ -146,5 +148,21 @@ self.port.on('hotkeyPrevStatus', function (value) {
 		document.getElementById('hotkeyPrevPref').className = 'green';
 	} else {
 		document.getElementById('hotkeyPrevPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyRandomStatus', function (value) {
+	if (value === true) {
+		document.getElementById('hotkeyRandomPref').className = 'green';
+	} else {
+		document.getElementById('hotkeyRandomPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyRepeatAllStatus', function (value) {
+	if (value === true) {
+		document.getElementById('hotkeyRepeatAllPref').className = 'green';
+	} else {
+		document.getElementById('hotkeyRepeatAllPref').className = 'red';
 	}
 });

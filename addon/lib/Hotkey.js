@@ -6,7 +6,9 @@ var {
 	hotkeyPlay,
 	hotkeyStop,
 	hotkeyNext,
-	hotkeyPrev;
+	hotkeyPrev,
+	hotkeyRandom,
+	hotkeyRepeatAll;
 
 exports.init = function () {
 
@@ -35,6 +37,20 @@ exports.init = function () {
 		combo: Preference.get("hotkeyPrev"),
 		onPress: function () {
 			Panel.get().port.emit('prevTrack', '');
+		}
+	});
+	
+	hotkeyRandom = Hotkey({
+		combo: Preference.get("hotkeyRandom"),
+		onPress: function () {
+			Panel.get().port.emit('random', '');
+		}
+	});
+	
+	hotkeyRepeatAll = Hotkey({
+		combo: Preference.get("hotkeyRepeatAll"),
+		onPress: function () {
+			Panel.get().port.emit('repeatAll', '');
 		}
 	});
 };
@@ -106,6 +122,44 @@ exports.reinitPrev = function () {
 			combo: Preference.get("hotkeyPrev"),
 			onPress: function () {
 				Panel.get().port.emit('prevTrack', '');
+			}
+		});
+	} catch (err) {
+		status = false;
+	}
+
+	return status;
+};
+
+exports.reinitRandom = function () {
+
+	var status = true;
+
+	try {
+		hotkeyRandom.destroy();
+		hotkeyRandom = Hotkey({
+			combo: Preference.get("hotkeyRandom"),
+			onPress: function () {
+				Panel.get().port.emit('random', '');
+			}
+		});
+	} catch (err) {
+		status = false;
+	}
+
+	return status;
+};
+
+exports.reinitRepeatAll = function () {
+
+	var status = true;
+
+	try {
+		hotkeyRepeatAll.destroy();
+		hotkeyRepeatAll = Hotkey({
+			combo: Preference.get("hotkeyRepeatAll"),
+			onPress: function () {
+				Panel.get().port.emit('repeatAll', '');
 			}
 		});
 	} catch (err) {

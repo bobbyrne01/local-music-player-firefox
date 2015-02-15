@@ -148,6 +148,16 @@ exports.init = function () {
 		Preference.set('hotkeyPrev', value);
 		panel.port.emit("hotkeyPrevStatus", Hotkey.reinitPrev());
 	});
+	
+	panel.port.on("updateHotkeyRandom", function (value) {
+		Preference.set('hotkeyRandom', value);
+		panel.port.emit("hotkeyRandomStatus", Hotkey.reinitRandom());
+	});
+	
+	panel.port.on("updateHotkeyRepeatAll", function (value) {
+		Preference.set('hotkeyRepeatAll', value);
+		panel.port.emit("hotkeyRepeatAllStatus", Hotkey.reinitRepeatAll());
+	});
 };
 
 exports.get = function () {
@@ -166,7 +176,9 @@ function populateUI() {
 		hotkeyPlay: Preference.get("hotkeyPlay"),
 		hotkeyStop: Preference.get("hotkeyStop"),
 		hotkeyNext: Preference.get("hotkeyNext"),
-		hotkeyPrev: Preference.get("hotkeyPrev")
+		hotkeyPrev: Preference.get("hotkeyPrev"),
+		hotkeyRandom: Preference.get("hotkeyRandom"),
+		hotkeyRepeatAll: Preference.get("hotkeyRepeatAll"),
 	});
 
 	panel.port.emit("uiData", uiData);
