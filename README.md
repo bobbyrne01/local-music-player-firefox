@@ -45,6 +45,8 @@ More info [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_med
 * `accel-shift-s` .. Stop track
 * `accel-shift-right` .. Next track
 * `accel-shift-left` .. Previous track
+* `accel-shift-r` .. Random
+* `accel-shift-a` .. Repeat all
 
 ### Locale support
 
