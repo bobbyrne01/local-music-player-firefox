@@ -14,8 +14,9 @@ Firefox addon allowing user to listen to music stored on their local system.
 * Optional, recursive directory scan
 * Play, pause, previous, stop, next buttons
 * Seek/skip
-* Play single song (default)
-* Repeat all sequentially
+* Play single song (disable single, all and randomize buttons)
+* Repeat single song
+* Repeat all songs sequentially (default)
 * Randomize
 * Displays currently playing song
 * Volume adjustment controls
