@@ -77,6 +77,7 @@ self.port.on("uiData", function (uiData) {
 	document.getElementById('hotkeyPrevPref').value = parsed.hotkeyPrev;
 	document.getElementById('hotkeyRandomPref').value = parsed.hotkeyRandom;
 	document.getElementById('hotkeyRepeatAllPref').value = parsed.hotkeyRepeatAll;
+	document.getElementById('hotkeyRepeat1Pref').value = parsed.hotkeyRepeat1;
 
 	document.getElementById('filterBy').placeholder = parsed.filterByString;
 	LocalMusicPlayer.filterBy();
@@ -109,6 +110,10 @@ self.port.on('nextTrack', function () {
 
 self.port.on('prevTrack', function () {
 	LocalMusicPlayer.prevTrack();
+});
+
+self.port.on('repeat1', function () {
+	LocalMusicPlayer.toggle('repeat1');
 });
 
 self.port.on('repeatAll', function () {
@@ -164,5 +169,13 @@ self.port.on('hotkeyRepeatAllStatus', function (value) {
 		document.getElementById('hotkeyRepeatAllPref').className = 'green';
 	} else {
 		document.getElementById('hotkeyRepeatAllPref').className = 'red';
+	}
+});
+
+self.port.on('hotkeyRepeat1Status', function (value) {
+	if (value === true) {
+		document.getElementById('hotkeyRepeat1Pref').className = 'green';
+	} else {
+		document.getElementById('hotkeyRepeat1Pref').className = 'red';
 	}
 });

@@ -1,50 +1,48 @@
 {
-  "name": "local-music-player-firefox",
-  "title": "Local Music Player",
-  "id": "jid1-nCt6CO1kXSzfAg",
-  "description": "Browse and listen to your local music",
-  "author": "Robert Byrne",
-  "license": "GNU GPL v3",
-  "version": "0.10.8",
-  "permissions": {
-    "private-browsing": true
-  },
-  "preferences": [
-    {
-      "name": "hotkeyPlay",
-      "title": "Play",
-      "type": "string",
-      "value": "accel-shift-p"
-    },
-    {
-      "name": "hotkeyStop",
-      "title": "Stop",
-      "type": "string",
-      "value": "accel-shift-s"
-    },
-    {
-      "name": "hotkeyNext",
-      "title": "Next",
-      "type": "string",
-      "value": "accel-shift-right"
-    },
-    {
-      "name": "hotkeyPrev",
-      "title": "Previous",
-      "type": "string",
-      "value": "accel-shift-left"
-    },
-    {
-      "name": "hotkeyRandom",
-      "title": "Random",
-      "type": "string",
-      "value": "accel-shift-r"
-    },
-    {
-      "name": "hotkeyRepeatAll",
-      "title": "RepeatAll",
-      "type": "string",
-      "value": "accel-shift-a"
-    }
-  ]
+	"name": "local-music-player-firefox",
+	"title": "Local Music Player",
+	"id": "jid1-nCt6CO1kXSzfAg",
+	"description": "Browse and listen to your local music",
+	"author": "Robert Byrne",
+	"license": "GNU GPL v3",
+	"version": "0.10.8",
+	"permissions": {
+		"private-browsing": true
+	},
+	"preferences": [{
+		"name": "hotkeyPlay",
+		"title": "Play",
+		"type": "string",
+		"value": "accel-shift-p"
+	}, {
+		"name": "hotkeyStop",
+		"title": "Stop",
+		"type": "string",
+		"value": "accel-shift-s"
+	}, {
+		"name": "hotkeyNext",
+		"title": "Next",
+		"type": "string",
+		"value": "accel-shift-right"
+	}, {
+		"name": "hotkeyPrev",
+		"title": "Previous",
+		"type": "string",
+		"value": "accel-shift-left"
+	}, {
+		"name": "hotkeyRandom",
+		"title": "Random",
+		"type": "string",
+		"value": "accel-shift-r"
+	}, {
+		"name": "hotkeyRepeatAll",
+		"title": "RepeatAll",
+		"type": "string",
+		"value": "accel-shift-a"
+	}, {
+		"name": "hotkeyRepeat1",
+		"title": "Repeat1",
+		"type": "string",
+		"value": "accel-shift-1"
+	}]
 }

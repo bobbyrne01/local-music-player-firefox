@@ -8,7 +8,8 @@ var {
 	hotkeyNext,
 	hotkeyPrev,
 	hotkeyRandom,
-	hotkeyRepeatAll;
+	hotkeyRepeatAll,
+	hotkeyRepeat1;
 
 exports.init = function () {
 
@@ -39,18 +40,25 @@ exports.init = function () {
 			Panel.get().port.emit('prevTrack', '');
 		}
 	});
-	
+
 	hotkeyRandom = Hotkey({
 		combo: Preference.get("hotkeyRandom"),
 		onPress: function () {
 			Panel.get().port.emit('random', '');
 		}
 	});
-	
+
 	hotkeyRepeatAll = Hotkey({
 		combo: Preference.get("hotkeyRepeatAll"),
 		onPress: function () {
 			Panel.get().port.emit('repeatAll', '');
+		}
+	});
+
+	hotkeyRepeat1 = Hotkey({
+		combo: Preference.get("hotkeyRepeat1"),
+		onPress: function () {
+			Panel.get().port.emit('repeat1', '');
 		}
 	});
 };
@@ -160,6 +168,25 @@ exports.reinitRepeatAll = function () {
 			combo: Preference.get("hotkeyRepeatAll"),
 			onPress: function () {
 				Panel.get().port.emit('repeatAll', '');
+			}
+		});
+	} catch (err) {
+		status = false;
+	}
+
+	return status;
+};
+
+exports.reinitRepeat1 = function () {
+
+	var status = true;
+
+	try {
+		hotkeyRepeat1.destroy();
+		hotkeyRepeat1 = Hotkey({
+			combo: Preference.get("hotkeyRepeat1"),
+			onPress: function () {
+				Panel.get().port.emit('repeat1', '');
 			}
 		});
 	} catch (err) {

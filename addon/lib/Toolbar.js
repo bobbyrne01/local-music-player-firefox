@@ -13,6 +13,7 @@ var Data = require("./Data"),
 	Panel = require("./Panel"),
 	frameObject,
 	playButton,
+	repeat1,
 	repeatAll,
 	random,
 	playing = false;
@@ -68,6 +69,25 @@ exports.init = function () {
 
 	frameObject.on("message", updateAudioBar);
 
+	repeat1 = ActionButton({
+		id: "localmusicplayer-repeat1",
+		label: Localisation.getString("repeat1_title"),
+		icon: Data.get("images/repeat1-24.png"),
+		badgeColor: "#000000",
+		onClick: function (state) {
+			Panel.get().port.emit("repeat1", '');
+
+			if (this.badge === '~') {
+
+				this.badge = "";
+			} else {
+				this.badge = "~";
+				repeatAll.badge = "";
+				random.badge = "";
+			}
+		}
+	});
+
 	repeatAll = ActionButton({
 		id: "localmusicplayer-repeatAll",
 		label: Localisation.getString("repeatAll_title"),
@@ -81,6 +101,7 @@ exports.init = function () {
 				this.badge = "";
 			} else {
 				this.badge = "~";
+				repeat1.badge = "";
 				random.badge = "";
 			}
 		}
@@ -99,6 +120,7 @@ exports.init = function () {
 				this.badge = "";
 			} else {
 				this.badge = "~";
+				repeat1.badge = "";
 				repeatAll.badge = "";
 			}
 		}
@@ -107,7 +129,7 @@ exports.init = function () {
 	var toolbar = Toolbar({
 		title: Localisation.getString("addonName_title"),
 		//hidden: true,
-		items: [playButton, previous, stop, next, frameObject, repeatAll, random]
+		items: [playButton, previous, stop, next, frameObject, repeat1, repeatAll, random]
 	});
 };
 
@@ -128,9 +150,20 @@ exports.setPlaying = function (value) {
 	}
 };
 
+exports.setRepeat1 = function (value) {
+	if (value) {
+		repeat1.badge = "~";
+		repeatAll.badge = "";
+		random.badge = "";
+	} else {
+		repeat1.badge = "";
+	}
+};
+
 exports.setRepeatAll = function (value) {
 	if (value) {
 		repeatAll.badge = "~";
+		repeat1.badge = "";
 		random.badge = "";
 	} else {
 		repeatAll.badge = "";
@@ -140,6 +173,7 @@ exports.setRepeatAll = function (value) {
 exports.setRandom = function (value) {
 	if (value) {
 		random.badge = "~";
+		repeat1.badge = "";
 		repeatAll.badge = "";
 	} else {
 		random.badge = "";

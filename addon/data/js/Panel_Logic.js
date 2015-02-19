@@ -1,7 +1,7 @@
 var LocalMusicPlayer = {
 	separator: null,
 	currentSongRow: null,
-	playStyle: 'one',
+	playStyle: 'repeatAll',
 
 	initEventListeners: function () {
 
@@ -46,6 +46,9 @@ var LocalMusicPlayer = {
 		document.getElementById('stopTrack').addEventListener('click', LocalMusicPlayer.stop);
 		document.getElementById('prevTrack').addEventListener('click', LocalMusicPlayer.prevTrack);
 		document.getElementById('nextTrack').addEventListener('click', LocalMusicPlayer.nextTrack);
+		document.getElementById('repeat1').addEventListener('click', function () {
+			LocalMusicPlayer.toggle(this.id);
+		});
 		document.getElementById('repeatAll').addEventListener('click', function () {
 			LocalMusicPlayer.toggle(this.id);
 		});
@@ -99,6 +102,12 @@ var LocalMusicPlayer = {
 		};
 		document.getElementById('hotkeyRandomPref').onkeyup = function (event) {
 			self.port.emit("updateHotkeyRandom", this.value);
+		};
+		document.getElementById('hotkeyRepeatAllPref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyRepeatAll", this.value);
+		};
+		document.getElementById('hotkeyRepeat1Pref').onkeyup = function (event) {
+			self.port.emit("updateHotkeyRepeat1", this.value);
 		};
 	},
 	selectDir: function () {
@@ -203,16 +212,38 @@ var LocalMusicPlayer = {
 	},
 	toggle: function (id) {
 
-		if (id === 'repeatAll') {
+		if (id === 'repeat1') {
 
 			if (id === LocalMusicPlayer.playStyle) {
+				document.getElementById('repeat1').style.backgroundColor = '';
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '';
-				LocalMusicPlayer.playStyle = 'one';
+				LocalMusicPlayer.playStyle = 'stopAfterEnd';
+				document.getElementById('player').removeEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('repeat1', false);
+			} else {
+				document.getElementById('repeat1').style.backgroundColor = '#B2B2B2';
+				document.getElementById('repeatAll').style.backgroundColor = '';
+				document.getElementById('random').style.backgroundColor = '';
+				LocalMusicPlayer.playStyle = 'repeat1';
+				document.getElementById('player').addEventListener('ended', LocalMusicPlayer.songEnded);
+
+				self.port.emit('repeat1', true);
+			}
+
+		} else if (id === 'repeatAll') {
+
+			if (id === LocalMusicPlayer.playStyle) {
+				document.getElementById('repeat1').style.backgroundColor = '';
+				document.getElementById('repeatAll').style.backgroundColor = '';
+				document.getElementById('random').style.backgroundColor = '';
+				LocalMusicPlayer.playStyle = 'stopAfterEnd';
 				document.getElementById('player').removeEventListener('ended', LocalMusicPlayer.songEnded);
 
 				self.port.emit('repeatAll', false);
 			} else {
+				document.getElementById('repeat1').style.backgroundColor = '';
 				document.getElementById('repeatAll').style.backgroundColor = '#B2B2B2';
 				document.getElementById('random').style.backgroundColor = '';
 				LocalMusicPlayer.playStyle = 'repeatAll';
@@ -224,13 +255,15 @@ var LocalMusicPlayer = {
 		} else if (id === 'random') {
 
 			if (id === LocalMusicPlayer.playStyle) {
+				document.getElementById('repeat1').style.backgroundColor = '';
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '';
-				LocalMusicPlayer.playStyle = 'one';
+				LocalMusicPlayer.playStyle = 'stopAfterEnd';
 				document.getElementById('player').removeEventListener('ended', LocalMusicPlayer.songEnded);
 
 				self.port.emit('random', false);
 			} else {
+				document.getElementById('repeat1').style.backgroundColor = '';
 				document.getElementById('repeatAll').style.backgroundColor = '';
 				document.getElementById('random').style.backgroundColor = '#B2B2B2';
 				LocalMusicPlayer.playStyle = 'random';
@@ -242,7 +275,11 @@ var LocalMusicPlayer = {
 	},
 	songEnded: function () {
 
-		if (LocalMusicPlayer.playStyle === 'repeatAll') {
+		if (LocalMusicPlayer.playStyle === 'repeat1') {
+			LocalMusicPlayer.play(
+				document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[0].innerHTML,
+				document.getElementById('tracks').rows[LocalMusicPlayer.currentSongRow].cells[1].innerHTML);
+		} else if (LocalMusicPlayer.playStyle === 'repeatAll') {
 			LocalMusicPlayer.nextTrack();
 		} else if (LocalMusicPlayer.playStyle === 'random') {
 			LocalMusicPlayer.random();

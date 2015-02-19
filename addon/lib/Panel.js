@@ -109,6 +109,10 @@ exports.init = function () {
 		Toolbar.setPlaying(false);
 	});
 
+	panel.port.on("repeat1", function (value) {
+		Toolbar.setRepeat1(value);
+	});
+
 	panel.port.on("repeatAll", function (value) {
 		Toolbar.setRepeatAll(value);
 	});
@@ -148,15 +152,20 @@ exports.init = function () {
 		Preference.set('hotkeyPrev', value);
 		panel.port.emit("hotkeyPrevStatus", Hotkey.reinitPrev());
 	});
-	
+
 	panel.port.on("updateHotkeyRandom", function (value) {
 		Preference.set('hotkeyRandom', value);
 		panel.port.emit("hotkeyRandomStatus", Hotkey.reinitRandom());
 	});
-	
+
 	panel.port.on("updateHotkeyRepeatAll", function (value) {
 		Preference.set('hotkeyRepeatAll', value);
 		panel.port.emit("hotkeyRepeatAllStatus", Hotkey.reinitRepeatAll());
+	});
+
+	panel.port.on("updateHotkeyRepeat1", function (value) {
+		Preference.set('hotkeyRepeat1', value);
+		panel.port.emit("hotkeyRepeat1Status", Hotkey.reinitRepeat1());
 	});
 };
 
@@ -179,6 +188,7 @@ function populateUI() {
 		hotkeyPrev: Preference.get("hotkeyPrev"),
 		hotkeyRandom: Preference.get("hotkeyRandom"),
 		hotkeyRepeatAll: Preference.get("hotkeyRepeatAll"),
+		hotkeyRepeat1: Preference.get("hotkeyRepeat1")
 	});
 
 	panel.port.emit("uiData", uiData);
