@@ -44,10 +44,11 @@ More info [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_med
 
 * `accel-shift-p` .. Play track
 * `accel-shift-s` .. Stop track
-* `accel-shift-right` .. Next track
-* `accel-shift-left` .. Previous track
-* `accel-shift-r` .. Random
-* `accel-shift-a` .. Repeat all
+* `accel-shift-right` .. Next song
+* `accel-shift-left` .. Previous song
+* `accel-shift-r` .. Randomize
+* `accel-shift-1` .. Repeat single song
+* `accel-shift-a` .. Repeat all songs
 
 ### Locale support
 
