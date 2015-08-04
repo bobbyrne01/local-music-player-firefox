@@ -111,10 +111,6 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
-		watch: {
-			files: ['<%= jshint.files %>'],
-			tasks: ['jshint']
-		},
 		notify_hooks: {
 			options: {
 				enabled: true,
@@ -150,7 +146,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-csslint');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
-	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-release');
 
 	grunt.registerTask('default', ['jsbeautifier', 'jshint', 'validation', 'csslint']);

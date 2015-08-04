@@ -1,7 +1,6 @@
 local-music-player-firefox
 ==========================
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bobbyrne01/local-music-player-firefox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/bobbyrne01/local-music-player-firefox.svg?branch=master)](https://travis-ci.org/bobbyrne01/local-music-player-firefox)
 [![devDependency Status](https://david-dm.org/bobbyrne01/local-music-player-firefox/dev-status.svg)](https://david-dm.org/bobbyrne01/local-music-player-firefox#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
